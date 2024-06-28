@@ -37,4 +37,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Lombok
+    implementation("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.22")
+
+    // Google Maps
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+
 }
