@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btningresar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login"
-    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -29,7 +28,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Inicio de Sesion"
+                android:text="Inicio de Sesión"
                 android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="34sp"
@@ -58,15 +57,16 @@
                 android:ems="10"
                 android:inputType="text"
                 android:textColorHint="@color/cardview_dark_background"
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btningresar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/green"
                 android:text="Iniciar Sesión"
                 android:textSize="20sp"
-                app:cornerRadius="20dp"/>
+                app:cornerRadius="20dp" />
 
         </LinearLayout>
 
