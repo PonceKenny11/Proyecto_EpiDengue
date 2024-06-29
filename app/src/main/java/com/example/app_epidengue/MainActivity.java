@@ -1,9 +1,12 @@
 package com.example.app_epidengue;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText usuario, contraseña;
     TextView lblregistrar;
-    Button btnregistrar;
+    Button btningresar;
     Connection con;
 
     @Override
@@ -31,7 +34,43 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Vincular vistas
         usuario = findViewById(R.id.txtusuario);
         contraseña = findViewById(R.id.txtcontra);
+        btningresar = findViewById(R.id.btningresar);
+        lblregistrar = findViewById(R.id.lblregistrar);
+
+        // Configurar el botón de Ingresar
+        btningresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = usuario.getText().toString();
+                String pass = contraseña.getText().toString();
+
+                if (user.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Lógica de autenticación
+                    if (user.equals("admin") && pass.equals("admin")) {
+                        Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        // Navegar a otra actividad si es necesario
+                        Intent intent = new Intent(MainActivity.this, FichaDengue.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        // Configurar el texto de Registrar
+        lblregistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navegar a la actividad de registro
+                Intent intent = new Intent(MainActivity.this, RegistrarPaciente.class);
+                startActivity(intent);
+            }
+        });
     }
 }
