@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Establecimientos de Salud -->
+    <string-array name="establecimientos_de_salud">
+        <item>Essalud</item>
+        <item>Hospital Regional de Pucallpa</item>
+        <item>Posta 9 de Octubre</item>
+        <item>Posta de San Fernando</item>
+        <item>Diresa Ucayali</item>
+    </string-array>
 
+    <!-- Diagnósticos -->
+    <string-array name="nombres_diagnostico">
+        <item>Dengue sin signos de alarma</item>
+        <item>Dengue con signos de alarma</item>
+        <item>Dengue Grave</item>
+    </string-array>
+
+    <!-- Tipos de Diagnóstico -->
+    <string-array name="tipos_diagnostico">
+        <item>Confirmado</item>
+        <item>Probable</item>
+        <item>Descartado</item>
+    </string-array>
+
+    <!-- Provincias -->
+    <string-array name="provincias">
+        <item>Coronel Portillo</item>
+        <item>Atalaya</item>
+        <item>Padre Abad</item>
+        <item>Purus</item>
+    </string-array>
 </resources>

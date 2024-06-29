@@ -1,8 +1,12 @@
 package com.example.app_epidengue.models;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class FichaDengue {
     private int idFicha;
     private String idPaciente;
@@ -14,4 +18,8 @@ public class FichaDengue {
     private int semanaEpidemiologica;
     private String fechaHospitalizacion;
     private String fechaMuestraLaboratorio;
+
+    public int getHistoriaClinica() {
+        return historiaClinica;
+    }
 }
