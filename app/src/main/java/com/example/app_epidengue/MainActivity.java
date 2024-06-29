@@ -1,6 +1,9 @@
 package com.example.app_epidengue;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.sql.Connection;
+
 public class MainActivity extends AppCompatActivity {
+
+    EditText usuario, contraseña;
+    TextView lblregistrar;
+    Button btnregistrar;
+    Connection con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +30,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        usuario = findViewById(R.id.txtusuario);
+        contraseña = findViewById(R.id.txtcontra);
     }
 }

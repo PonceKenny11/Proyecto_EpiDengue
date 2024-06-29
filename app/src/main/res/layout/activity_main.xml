@@ -35,28 +35,34 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/txtusuario"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittex"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="Usuario"
                 android:ems="10"
+                android:hint="Usuario"
                 android:inputType="text"
-                android:textColorHint="@color/cardview_dark_background"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/cardview_dark_background" />
 
             <EditText
+                android:id="@+id/txtcontra"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-               android:background="@drawable/custom_edittex"
+                android:background="@drawable/custom_edittex"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
-                android:hint="Contraseña"
                 android:ems="10"
-                android:inputType="text"
-                android:textColorHint="@color/cardview_dark_background"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/cardview_dark_background" />
 
             <Button
                 android:id="@+id/btningresar"
@@ -70,24 +76,25 @@
 
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="¿Aun no estas Registrado"
+        android:text="¿Aún no estás Registrado?"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/lblregistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-2dp"
-        android:text="Registrate Ahora"
+        android:text="Regístrate Ahora"
         android:textAlignment="center"
         android:textColor="@color/green"
         android:textSize="19sp"
         android:textStyle="bold" />
+
 </LinearLayout>
