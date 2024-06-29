@@ -44,7 +44,7 @@
                 android:drawablePadding="8dp"
                 android:ems="10"
                 android:hint="Usuario"
-                android:inputType="text"
+                android:inputType="text|textPersonName"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/cardview_dark_background" />
