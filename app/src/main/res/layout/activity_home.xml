@@ -23,6 +23,13 @@
             android:layout_height="100dp"
             android:src="@drawable/registrar_ficha_imagen" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRAR FICHA"
+            android:textSize="18sp"
+            android:gravity="center" />
+
 
 
 
