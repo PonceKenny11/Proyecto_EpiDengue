@@ -18,6 +18,10 @@
         android:padding="16dp"
         android:onClick="openRegistrarFicha">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/registrar_ficha_imagen" />
 
 
 
