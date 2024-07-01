@@ -84,7 +84,7 @@ public class RegistrarPaciente extends AppCompatActivity {
         if(getPac == 1){
             Toast.makeText(this, "Paciente registrado exitosamente", Toast.LENGTH_SHORT).show();
             limpiarCampos();
-            Intent instanciar = new Intent(this, FichaDengue.class);
+            Intent instanciar = new Intent(this, ReporteEpimiologico.class);
             startActivity(instanciar);
             finish();
         }else if(getPac == 0){

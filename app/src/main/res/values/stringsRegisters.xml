@@ -33,4 +33,6 @@
 
     <string name="SexoM">Masculino</string>
     <string name="SexoF">Femenino</string>
+    <string name="txtBuscar">DNI...</string>
+    <string name="Search">Buscar</string>
 </resources>
