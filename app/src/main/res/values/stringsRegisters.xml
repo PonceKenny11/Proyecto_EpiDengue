@@ -30,4 +30,7 @@
         <item>Padre Abad</item>
         <item>Purus</item>
     </string-array>
+
+    <string name="SexoM">Masculino</string>
+    <string name="SexoF">Femenino</string>
 </resources>

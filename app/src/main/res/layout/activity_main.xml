@@ -91,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-2dp"
+        android:minHeight="48dp"
         android:onClick="RegistrarPaciente"
         android:text="Regístrate Ahora"
         android:textAlignment="center"
