@@ -90,7 +90,7 @@ public class RegistrarPaciente extends AppCompatActivity {
         }else if(getPac == 0){
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
         } else if (getPac == 2) {
-            Toast.makeText(this, "Error al registrar el paciente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error al registrar el paciente -- Error 2", Toast.LENGTH_SHORT).show();
             limpiarCampos();
         }
     }

@@ -47,19 +47,35 @@ public class ReporteEpimiologico extends AppCompatActivity {
 
 
     public void BuscarPaciente(View view){
-        String dni = etSearchDNI.getText().toString().trim();
-        if (TextUtils.isEmpty(dni)) {
+        String buscardni = etSearchDNI.getText().toString().trim();
+        if (TextUtils.isEmpty(buscardni)) {
             Toast.makeText(this, "Por favor, ingrese un DNI", Toast.LENGTH_SHORT).show();
             etSearchDNI.setText("");
             etSearchDNI.requestFocus();
         }
 
-        boolean encontro = pacientBD.searchPatient(dni, tvNombreCompleto,tvEdad, tvSexo);
+        boolean encontro = pacientBD.searchPatient(buscardni, tvNombreCompleto,tvEdad, tvSexo);
         if(encontro){
-            tableLayout.setVisibility(View.VISIBLE);
+            //tableLayout.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "Paciente  encontrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Paciente no encontrado", Toast.LENGTH_SHORT).show();
             tableLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void EliminarPaciente(View view){
+        String dni = etSearchDNI.getText().toString().trim();
+        try {
+            boolean isDeleted = pacientBD.deletePatientByDNI(dni);
+            if (isDeleted) {
+                Toast.makeText(this, "Paciente eliminado exitosamente", Toast.LENGTH_SHORT).show();
+                tableLayout.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(this, "Error al eliminar el paciente", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Catch al eliminar el paciente: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }

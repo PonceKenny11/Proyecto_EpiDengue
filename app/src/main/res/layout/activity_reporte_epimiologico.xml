@@ -40,7 +40,7 @@
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="260dp"
         android:paddingTop="16dp"
         android:stretchColumns="1"
         android:visibility="visible"
@@ -95,5 +95,18 @@
 
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="EliminarPaciente"
+        android:text="Eliminar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

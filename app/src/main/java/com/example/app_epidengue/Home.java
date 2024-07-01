@@ -35,6 +35,7 @@ public class Home extends AppCompatActivity {
                 // Navegar a la actividad RegistrarPaciente
                 Intent intent = new Intent(Home.this, RegistrarPaciente.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -42,8 +43,9 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navegar a la actividad ReporteEpidemiologico (suponiendo que tienes esta actividad)
-              //  Intent intent = new Intent(Home.this, ReporteEpidemiologico.class);
-              //  startActivity(intent);
+              Intent intent = new Intent(Home.this, ReporteEpimiologico.class);
+              startActivity(intent);
+                finish();
             }
         });
 

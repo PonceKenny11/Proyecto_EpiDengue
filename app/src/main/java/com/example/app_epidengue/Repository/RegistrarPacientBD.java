@@ -43,7 +43,7 @@ public class RegistrarPacientBD {
 
     public boolean searchPatient(String idDNI, TextView tvNombreCompleto, TextView tvEdad,TextView tvSexo) {
 
-        Cursor cursor = getPatientByDNI(dni);
+        Cursor cursor = getPatientByDNI(idDNI);
         if (cursor != null && cursor.moveToFirst()) {
             int nombreCompletoIndex = cursor.getColumnIndex("NombreCompleto");
             int edadIndex = cursor.getColumnIndex("Edad");
@@ -76,6 +76,12 @@ public class RegistrarPacientBD {
 
         long result = db.insert("paciente", null, contentValues);
         return result != -1;
+    }
+
+    public boolean deletePatientByDNI(String dni) {
+        SQLiteDatabase db = this.dbHelp.getWritableDatabase();
+        int result = db.delete("paciente", "DNI = ?", new String[]{dni});
+        return result > 0;
     }
 
     private Cursor getPatientByDNI(String dni) {
