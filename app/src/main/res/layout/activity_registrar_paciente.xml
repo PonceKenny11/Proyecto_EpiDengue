@@ -57,8 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/green"
+            android:onClick="validarDNI"
             android:text="Verificar"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/txtnombreapellidos"
@@ -130,9 +131,12 @@
 
     </LinearLayout>
 
-
-
-
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="validarPaciente"
+        android:text="@string/s_next" />
 
 
 </LinearLayout>
