@@ -18,12 +18,10 @@ public class RegistrarPacientBD {
         this.telefono = telefono;
     }
 
-    public String registerPatient() {
-
-
+    public int registerPatient() {
         if (TextUtils.isEmpty(dni) || TextUtils.isEmpty(nombreComplet) || TextUtils.isEmpty(edad) ||
                 TextUtils.isEmpty(sexo) || TextUtils.isEmpty(telefono)) {
-            return "Por favor, complete todos los campos";
+            return 0;
         }
 
         int edadInt = Integer.parseInt(edad);
@@ -31,10 +29,9 @@ public class RegistrarPacientBD {
         boolean isInserted = insertPaciente(dni, nombreComplet, edadInt, sexo, telefono);
 
         if (isInserted) {
-
-            return  "Paciente registrado exitosamente";
+            return  1;
         } else {
-            return "Paciente registrado exitosamente";
+            return 2;
         }
     }
 
