@@ -40,35 +40,37 @@ public class MainActivity extends AppCompatActivity {
         btningresar = findViewById(R.id.btningresar);
         lblregistrar = findViewById(R.id.lblregistrar);
 
-    }
+        // Configurar el botón de Ingresar
+        btningresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = usuario.getText().toString();
+                String pass = contraseña.getText().toString();
 
+                if (user.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Lógica de autenticación
+                    if (user.equals("admin") && pass.equals("admin")) {
+                        Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        // Navegar a otra actividad si es necesario
+                        Intent intent = new Intent(MainActivity.this, Home.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
-    public void IngresarFicha(View view){
-        String user = usuario.getText().toString();
-        String pass = contraseña.getText().toString();
-
-        if (user.isEmpty() || pass.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
-        } else {
-            // Lógica de autenticación
-            if (user.equals("epi") && pass.equals("epi2024")) {
-                Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                limpiarCampos();
-                // Navegar a otra actividad si es necesario
+        // Configurar el texto de Registrar
+        lblregistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navegar a la actividad de registro
                 Intent intent = new Intent(MainActivity.this, RegistrarPaciente.class);
                 startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                limpiarCampos();
             }
-        }
-    }
-
-
-    private void limpiarCampos(){
-        usuario.setText("");
-        contraseña.setText("");
-        usuario.requestFocus();
+        });
     }
 }
