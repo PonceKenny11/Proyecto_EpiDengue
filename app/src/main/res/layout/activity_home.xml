@@ -16,12 +16,14 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="16dp"
-        android:onClick="openRegistrarFicha">
+        >
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/registrar_ficha_imagen" />
+            android:id="@+id/image_registrar_ficha"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/registrar_ficha_imagen"
+             />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,11 +32,52 @@
             android:textSize="18sp"
             android:gravity="center" />
 
-
-
-
-
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        >
+
+        <ImageView
+            android:id="@+id/image_reporte_epidemiologico"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/reporte_epidemiologico_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REPORTE EPIDEMIOLÓGICO"
+            android:textSize="18sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        >
+
+        <ImageView
+            android:id="@+id/image_grafico_epidemiologico"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/grafico_epidemiologico_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GRÁFICO EPIDEMIOLÓGICO"
+            android:textSize="18sp"
+            android:gravity="center" />
+    </LinearLayout>
+
 
 
 

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     if (user.equals("admin") && pass.equals("admin")) {
                         Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                         // Navegar a otra actividad si es necesario
-                        Intent intent = new Intent(MainActivity.this, FichaDengue.class);
+                        Intent intent = new Intent(MainActivity.this, Home.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
