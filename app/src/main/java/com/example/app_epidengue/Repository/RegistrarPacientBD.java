@@ -64,6 +64,12 @@ public class RegistrarPacientBD {
         }
     }
 
+    public boolean deletePatientByDNI(String dni) {
+        SQLiteDatabase db = this.dbHelp.getWritableDatabase();
+        int result = db.delete("paciente", "DNI = ?", new String[]{dni});
+        return result > 0;
+    }
+
     //PRIVATE
     private boolean insertPaciente(String dni, String nombreCompleto, int edad, String sexo, String telefono) {
         SQLiteDatabase db = this.dbHelp.getWritableDatabase();
@@ -78,11 +84,7 @@ public class RegistrarPacientBD {
         return result != -1;
     }
 
-    public boolean deletePatientByDNI(String dni) {
-        SQLiteDatabase db = this.dbHelp.getWritableDatabase();
-        int result = db.delete("paciente", "DNI = ?", new String[]{dni});
-        return result > 0;
-    }
+
 
     private Cursor getPatientByDNI(String dni) {
         SQLiteDatabase db = this.dbHelp.getReadableDatabase();

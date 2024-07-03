@@ -45,7 +45,7 @@ public class Home extends AppCompatActivity {
                 // Navegar a la actividad ReporteEpidemiologico (suponiendo que tienes esta actividad)
               Intent intent = new Intent(Home.this, ReporteEpimiologico.class);
               startActivity(intent);
-                finish();
+              finish();
             }
         });
 
