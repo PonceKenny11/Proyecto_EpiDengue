@@ -2,6 +2,7 @@
 <resources>
     <!-- Establecimientos de Salud -->
     <string-array name="establecimientos_de_salud">
+        <item>Seleccionar....</item>
         <item>Essalud</item>
         <item>Hospital Regional de Pucallpa</item>
         <item>Posta 9 de Octubre</item>
@@ -11,6 +12,7 @@
 
     <!-- Diagnósticos -->
     <string-array name="nombres_diagnostico">
+        <item>Seleccione....</item>
         <item>Dengue sin signos de alarma</item>
         <item>Dengue con signos de alarma</item>
         <item>Dengue Grave</item>
@@ -18,6 +20,7 @@
 
     <!-- Tipos de Diagnóstico -->
     <string-array name="tipos_diagnostico">
+        <item>Seleccione....</item>
         <item>Confirmado</item>
         <item>Probable</item>
         <item>Descartado</item>
