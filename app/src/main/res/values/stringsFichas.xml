@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_0">Registrar Ficha</string>
+    <string name="title_1">Diagnóstico</string>
+    <string name="title_2">Tipo de Diagnóstico</string>
+    <string name="fever">Fiebre °C</string>
+    <string name="Symptoms">Síntomas:</string>
+    <string name="D_S_A">Dengue sin Signos</string>
+    <string name="D_C_A">Dengue Con Signos</string>
+    <string name="D_G">Dengue Grave</string>
+    <string name="txtBuscar">DNI...</string>
+    <string name="Search">Buscar</string>
+</resources>
