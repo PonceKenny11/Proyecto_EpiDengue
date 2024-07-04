@@ -36,5 +36,17 @@
 
     <string name="SexoM">Masculino</string>
     <string name="SexoF">Femenino</string>
+    <string name="S1_SS">Dolor Lumbar</string>
+    <string name="S2_SS">Cefalea</string>
+    <string name="S3_SS">Nauses/Vomitos</string>
+    <string name="S4_SS">Mialgias</string>
+    <string name="S1_CS">Incremento hematocrito</string>
+    <string name="S2_CS">Dolor Abdominal</string>
+    <string name="S3_CS">Vomitos Persistentes</string>
+    <string name="S4_CS">Dolor Torácico</string>
+    <string name="S1_G">Pulso Debil</string>
+    <string name="S2_G">Sangrado Grave</string>
+    <string name="S3_G">Extremidades Frias</string>
+
 
 </resources>

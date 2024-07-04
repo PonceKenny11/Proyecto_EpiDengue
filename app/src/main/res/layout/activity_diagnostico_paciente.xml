@@ -93,28 +93,28 @@
         app:layout_constraintTop_toBottomOf="@+id/DSA">
 
         <CheckBox
-            android:id="@+id/checkBox8"
+            android:id="@+id/checkSS1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S1_SS" />
 
         <CheckBox
-            android:id="@+id/checkBox9"
+            android:id="@+id/checkSS2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S2_SS" />
 
         <CheckBox
-            android:id="@+id/checkBox10"
+            android:id="@+id/checkSS3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S3_SS" />
 
         <CheckBox
-            android:id="@+id/checkBox11"
+            android:id="@+id/checkSS4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S4_SS" />
 
     </RadioGroup>
 
@@ -128,28 +128,28 @@
         app:layout_constraintTop_toBottomOf="@+id/DCA">
 
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkCS1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S1_CS" />
 
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/checkCS2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S2_CS" />
 
         <CheckBox
-            android:id="@+id/checkBox6"
+            android:id="@+id/checkCS3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S3_CS" />
 
         <CheckBox
-            android:id="@+id/checkBox7"
+            android:id="@+id/checkCS4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S4_CS" />
 
     </RadioGroup>
 
@@ -163,22 +163,22 @@
         app:layout_constraintTop_toBottomOf="@+id/DG">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkG1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S1_G" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkG2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S2_G" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkG3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/S3_G" />
 
     </RadioGroup>
 
