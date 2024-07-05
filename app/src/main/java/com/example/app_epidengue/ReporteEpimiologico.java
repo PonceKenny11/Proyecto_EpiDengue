@@ -43,6 +43,8 @@ public class ReporteEpimiologico extends AppCompatActivity {
 
         pacientBD = new RegistrarPacientBD(this);
 
+
+
     }
 
 

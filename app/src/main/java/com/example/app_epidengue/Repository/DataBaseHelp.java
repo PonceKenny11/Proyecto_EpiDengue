@@ -67,4 +67,8 @@ public class DataBaseHelp extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS lugar_infeccion");
         onCreate(db);
     }
+
+    public void openDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+    }
 }

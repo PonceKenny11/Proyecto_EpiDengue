@@ -1,6 +1,7 @@
 package com.example.app_epidengue;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.app_epidengue.Repository.DiagnosticoDB;
+import com.example.app_epidengue.validaciones.Validaciones;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,9 @@ public class DiagnosticoPaciente extends AppCompatActivity {
     private Spinner cboNombreDiagnostico, cboTipoDiagnostico;
     private EditText txtFiebre;
 
+    private String nombreDiagnostico, tipoDiagnostico,fiebreStr,selectDG, selectDSSA, selectDCSA;
     private DiagnosticoDB diagDB;
-
+    private Validaciones validar;
     private CheckBox CheckSS1,CheckSS2,CheckSS3,CheckSS4;
     private CheckBox CheckCS1,CheckCS2,CheckCS3,CheckCS4;
     private CheckBox CheckG1,CheckG2,CheckG3;
@@ -47,7 +50,9 @@ public class DiagnosticoPaciente extends AppCompatActivity {
         cboNombreDiagnostico = findViewById(R.id.cboDiagnostico);//spinners
         cboTipoDiagnostico = findViewById(R.id.cboTipoDiag);//spinners
         txtFiebre = findViewById(R.id.txtFiebre);
+
         diagDB = new DiagnosticoDB(this);//clase Diagnostico
+        validar = new Validaciones(this);
 
         CheckSS1 = findViewById(R.id.checkSS1);
         CheckSS2 = findViewById(R.id.checkSS2);
@@ -62,6 +67,7 @@ public class DiagnosticoPaciente extends AppCompatActivity {
         CheckG1 = findViewById(R.id.checkG1);
         CheckG2 = findViewById(R.id.checkG2);
         CheckG3 = findViewById(R.id.checkG3);
+
 
     }
 
@@ -79,40 +85,45 @@ public class DiagnosticoPaciente extends AppCompatActivity {
         cboTipoDiagnostico.setAdapter(adapterTipoDiagnostico);
     }
 
-
     private void iniciarDatos(){
-        String nombreDiagnostico = cboNombreDiagnostico.getSelectedItem().toString();
-        String tipoDiagnostico = cboTipoDiagnostico.getSelectedItem().toString();
-        String fiebreStr = txtFiebre.getText().toString().trim();
+        nombreDiagnostico = cboNombreDiagnostico.getSelectedItem().toString();
+        tipoDiagnostico = cboTipoDiagnostico.getSelectedItem().toString();
+        fiebreStr = txtFiebre.getText().toString().trim();
+
+        // Obtener todos los datos seleccionados
+        selectDG= getSelectedCheckBoxData(
+                CheckG1,CheckG2,CheckG3);
+
+        selectDSSA = getSelectedCheckBoxData(
+                CheckSS1,CheckSS2,CheckSS3,CheckSS4);
+
+        selectDCSA = getSelectedCheckBoxData(
+                CheckCS1,CheckCS2,CheckCS3,CheckCS4);
+
+    }
+    /////////////////////////////ONCLICK///////////////////////////
+    public void startInsertDiag(View view){
+        iniciarDatos();
+        float fiebre = Float.parseFloat(fiebreStr);
+
+        String sintomas = validar.getStrSintomas(selectDSSA, selectDCSA, selectDG);
+
+        boolean isValited = validar.validarDiagnosticos(fiebreStr,nombreDiagnostico, tipoDiagnostico, selectDSSA, selectDCSA, selectDG);
+        boolean isInserted = diagDB.insertDiagnostico(nombreDiagnostico, tipoDiagnostico, fiebre, sintomas);
+        dataAlreadyEntered(isInserted, isValited);
+    }
 
 
 
-        float fiebre;
 
-        try {
-            fiebre = Float.parseFloat(fiebreStr);
-
-            boolean wasFever = fiebre >= 37.5 && fiebre <= 40.0;
-
-            if (!wasFever) {
-                Toast.makeText(this, "se considera si hubo Fiebre entre: 37.5 y 40 grados", Toast.LENGTH_SHORT).show();
-            }
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Por favor, ingrese un valor válido para la fiebre", Toast.LENGTH_SHORT).show();
-
-        }
-
-
-
-        /*boolean isInserted = dbHelper.insertDiagnostico(nombreDiagnostico, tipoDiagnostico, fiebre, sintomas);
-
-        if (isInserted) {
+    private void dataAlreadyEntered(boolean isInserted, boolean isValited){
+        if (isInserted && isValited) {
             Toast.makeText(this, "Diagnóstico registrado exitosamente", Toast.LENGTH_SHORT).show();
-            etFiebre.setText("");
-            etSintomas.setText("");
+            txtFiebre.setText("");
+
         } else {
             Toast.makeText(this, "Error al registrar el diagnóstico", Toast.LENGTH_SHORT).show();
-        }*/
+        }
     }
 
 

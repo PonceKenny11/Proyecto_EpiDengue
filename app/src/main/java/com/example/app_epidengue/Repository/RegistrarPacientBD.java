@@ -14,6 +14,7 @@ public class RegistrarPacientBD {
 
     public RegistrarPacientBD(Context context){
         dbHelp = new DataBaseHelp(context);
+        dbHelp.openDatabase();
     }
     public RegistrarPacientBD(String dni,String nombreComplet, String edad, String sexo, String telefono, Context context){
         dbHelp = new DataBaseHelp(context);

@@ -1,5 +1,7 @@
 package com.example.app_epidengue;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -79,7 +81,7 @@ public class RegistrarPaciente extends AppCompatActivity {
     }
 
     ///PUBLIC
-    public void validarPaciente(View view){
+    private void validarPaciente(){
         int getPac = pacienteBD.registerPatient();
         if(getPac == 1){
             Toast.makeText(this, "Paciente registrado exitosamente", Toast.LENGTH_SHORT).show();
@@ -93,6 +95,27 @@ public class RegistrarPaciente extends AppCompatActivity {
             Toast.makeText(this, "Error al registrar el paciente -- Error 2", Toast.LENGTH_SHORT).show();
             limpiarCampos();
         }
+    }
+
+
+    public void NextOrNoPaciente(View view){
+        // Mostrar el cuadro de diálogo de confirmación
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmar Registro");
+        builder.setMessage("¿Está seguro de que desea guardar estos datos?");
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Registrar el diagnóstico
+                validarPaciente();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void validarDNI(View view){
