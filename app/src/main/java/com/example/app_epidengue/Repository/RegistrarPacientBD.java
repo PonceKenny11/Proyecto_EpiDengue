@@ -2,45 +2,23 @@ package com.example.app_epidengue.Repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 public class RegistrarPacientBD {
 
-    private String dni, nombreComplet, edad, sexo, telefono;
     private DataBaseHelp dbHelp;
+    private Context context;
 
     public RegistrarPacientBD(Context context){
         dbHelp = new DataBaseHelp(context);
         dbHelp.openDatabase();
-    }
-    public RegistrarPacientBD(String dni,String nombreComplet, String edad, String sexo, String telefono, Context context){
-        dbHelp = new DataBaseHelp(context);
-        this.dni = dni;
-        this.nombreComplet = nombreComplet;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.telefono = telefono;
+        this.context = context;
     }
 
-    public int registerPatient() {
-        if (TextUtils.isEmpty(dni) || TextUtils.isEmpty(nombreComplet) || TextUtils.isEmpty(edad) ||
-                TextUtils.isEmpty(sexo) || TextUtils.isEmpty(telefono)) {
-            return 0;
-        }
 
-        int edadInt = Integer.parseInt(edad);
-
-        boolean isInserted = insertPaciente(dni, nombreComplet, edadInt, sexo, telefono);
-
-        if (isInserted) {
-            return  1;
-        } else {
-            return 2;
-        }
-    }
 
     public boolean searchPatient(String idDNI, TextView tvNombreCompleto, TextView tvEdad,TextView tvSexo) {
 
@@ -71,13 +49,47 @@ public class RegistrarPacientBD {
         return result > 0;
     }
 
-    //PRIVATE
-    private boolean insertPaciente(String dni, String nombreCompleto, int edad, String sexo, String telefono) {
+    public boolean sendPacienteTemp(String dni,String nombreComplet, String edad, String sexo, String telefono){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PacienteRegistrado", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editarShared = sharedPreferences.edit();
+        // Guardar los valores en SharedPreferences
+        editarShared.putBoolean("isRegistered1", true);
+        int edadInt = Integer.parseInt(edad);
+
+
+        editarShared.putString("dni", dni);
+        editarShared.putString("nombreCompleto", nombreComplet);
+        editarShared.putInt("edad",edadInt);
+        editarShared.putString("telefono", telefono);
+
+        // Aplicar los cambios
+        editarShared.apply();
+
+        //vereficar si se guardo o no
+        SharedPreferences prefsCheck = context.getSharedPreferences("PacienteRegistrado", Context.MODE_PRIVATE);
+        boolean isRegistered = prefsCheck.getBoolean("isRegistered1", false);
+        String savedDni = prefsCheck.getString("dni", "");
+        String savedNombreCompleto = prefsCheck.getString("nombreCompleto", "");
+        int savedEdad = prefsCheck.getInt("edad", -1);
+        String savedSexo = prefsCheck.getString("sexo", "");
+        String savedTelefono = prefsCheck.getString("telefono", "");
+
+        return (isRegistered && dni.equals(savedDni) && nombreComplet.equals(savedNombreCompleto) &&
+                edadInt == savedEdad && sexo.equals(savedSexo) && telefono.equals(savedTelefono));
+
+    }
+
+
+
+    //////////////////PRIVATE/////////////////////////////////////////
+
+    private boolean insertPaciente(String dni,String nombreComplet, String edad, String sexo, String telefono) {
         SQLiteDatabase db = this.dbHelp.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        int edadInt = Integer.parseInt(edad);
         contentValues.put("DNI", dni);
-        contentValues.put("NombreCompleto", nombreCompleto);
-        contentValues.put("Edad", edad);
+        contentValues.put("NombreCompleto", nombreComplet);
+        contentValues.put("Edad", edadInt);
         contentValues.put("Sexo", sexo);
         contentValues.put("NroTelefono", telefono);
 

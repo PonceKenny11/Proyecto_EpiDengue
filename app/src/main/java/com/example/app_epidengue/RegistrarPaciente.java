@@ -1,11 +1,8 @@
 package com.example.app_epidengue;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,13 +15,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.app_epidengue.Repository.RegistrarPacientBD;
+import com.example.app_epidengue.validaciones.Validaciones;
 
 public class RegistrarPaciente extends AppCompatActivity {
 
     private EditText txtDNI, txtNombreApellidos, txtEdad, txtNTelefono;
     private RadioGroup rdoGroup;
     private RegistrarPacientBD pacienteBD;
-    Button btnVerificar;
+    private Validaciones validar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +41,27 @@ public class RegistrarPaciente extends AppCompatActivity {
         txtEdad = findViewById(R.id.txtedad);
         txtNTelefono = findViewById(R.id.txtntelefono);
         rdoGroup = findViewById(R.id.rdoGpSexo);
-
-
+        pacienteBD = new RegistrarPacientBD(this);
+        validar = new Validaciones(this);
 
     }
 
-    private void inicializandoData(){
+    public void insertarPacienteTemp(View view){
         String dni = txtDNI.getText().toString().trim();
         String nombreCompleto = txtNombreApellidos.getText().toString().trim();
         String edadStr = txtEdad.getText().toString().trim();
         String telefono = txtNTelefono.getText().toString().trim();
 
-        pacienteBD = new RegistrarPacientBD(dni,nombreCompleto,edadStr,getSexo(),telefono,this);
+        boolean isRegistered = pacienteBD.sendPacienteTemp(dni,nombreCompleto,edadStr,getSexo(),telefono);//debe devolver true si se guardo correctamente
+        boolean isValidated = validar.validarPaciente(dni,nombreCompleto,edadStr,getSexo(),telefono,isRegistered);
+
+        if (isValidated){
+            Intent instanciar= new Intent(this, DiagnosticoPaciente.class);
+            startActivity(instanciar);
+            finish();
+        }else{
+            limpiarCampos();
+        }
     }
 
     private String getSexo(){
@@ -80,25 +87,8 @@ public class RegistrarPaciente extends AppCompatActivity {
         txtDNI.requestFocus();
     }
 
-    ///PUBLIC
-    private void validarPaciente(){
-        int getPac = pacienteBD.registerPatient();
-        if(getPac == 1){
-            Toast.makeText(this, "Paciente registrado exitosamente", Toast.LENGTH_SHORT).show();
-            limpiarCampos();
-            Intent instanciar = new Intent(this, ReporteEpimiologico.class);
-            startActivity(instanciar);
-            finish();
-        }else if(getPac == 0){
-            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
-        } else if (getPac == 2) {
-            Toast.makeText(this, "Error al registrar el paciente -- Error 2", Toast.LENGTH_SHORT).show();
-            limpiarCampos();
-        }
-    }
 
-
-    public void NextOrNoPaciente(View view){
+   /* public void NextOrNoPaciente(View view){
         // Mostrar el cuadro de diálogo de confirmación
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmar Registro");
@@ -116,9 +106,9 @@ public class RegistrarPaciente extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
+    }*/
 
     public void validarDNI(View view){
-        inicializandoData();
+        //inicializandoData();
     }
 }

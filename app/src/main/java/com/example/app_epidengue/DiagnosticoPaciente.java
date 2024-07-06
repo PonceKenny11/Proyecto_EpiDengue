@@ -108,9 +108,9 @@ public class DiagnosticoPaciente extends AppCompatActivity {
 
         String sintomas = validar.getStrSintomas(selectDSSA, selectDCSA, selectDG);
 
-        boolean isValited = validar.validarDiagnosticos(fiebreStr,nombreDiagnostico, tipoDiagnostico, selectDSSA, selectDCSA, selectDG);
-        boolean isInserted = diagDB.insertDiagnostico(nombreDiagnostico, tipoDiagnostico, fiebre, sintomas);
-        dataAlreadyEntered(isInserted, isValited);
+        boolean isValidated= validar.validarDiagnosticos(fiebreStr,nombreDiagnostico, tipoDiagnostico, selectDSSA, selectDCSA, selectDG);
+        boolean isInserted = diagDB.sendDiagnosticoTemp(nombreDiagnostico, tipoDiagnostico, fiebre, sintomas);
+        dataAlreadyEntered(isInserted, isValidated);
     }
 
 

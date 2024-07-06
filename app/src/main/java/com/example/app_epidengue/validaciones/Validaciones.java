@@ -12,8 +12,26 @@ public class Validaciones {
     }
 
 
-    public boolean validarDiagnosticos(String fiebreStr, String selectCboDiag, String selectCboTipo, String checkDSSA, String checkDCSA, String checkDG){
+
+    public boolean validarPaciente(String dni,String nombreComplet, String edad, String sexo, String telefono,boolean isInserted){
+        if(TextUtils.isEmpty(dni) || TextUtils.isEmpty(nombreComplet) || TextUtils.isEmpty(edad) ||
+                TextUtils.isEmpty(sexo) || TextUtils.isEmpty(telefono)){
+            mensajeToast("Por favor, complete todos los campos");
+            return false;
+            // !isInsert(si enviar false - por lo tanto se convierte en true, lo que indica que hay error al registrar en Shared)
+        }else if (!isInserted){
+            mensajeToast("Error al registrar el paciente // Error Shared");
+            return false;
+        }else {
+            mensajeToast("Paciente registrado");
+            return true;
+        }
+    }
+    public boolean validarDiagnosticos(String fiebreStr, String selectCboDiag, String selectCboTipo,
+                                       String checkDSSA, String checkDCSA, String checkDG){
+
         float fiebre = Float.parseFloat(fiebreStr);
+
         if (TextUtils.isEmpty(fiebreStr) || selectCboDiag.equals("Seleccione....") || selectCboTipo.equals("Seleccione....")) {
             mensajeToast("Por favor, complete todos los campos");
             return false;

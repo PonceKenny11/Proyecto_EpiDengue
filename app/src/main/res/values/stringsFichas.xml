@@ -10,4 +10,13 @@
     <string name="D_G">Dengue Grave</string>
     <string name="txtBuscar">DNI...</string>
     <string name="Search">Buscar</string>
+    <string name="txthistoria">Historia Clinica</string>
+    <string name="FInicioSintoma">Fecha de Inicio de Sintoma</string>
+    <string name="SemEpi">Semana Epidemiologica</string>
+    <string name="FHospitalizacion">Fecha de Hospitalizacion</string>
+    <string name="FLaboratorio">Fecha de Muestra de Laboratorio</string>
+    <string name="nHistoria">N° HC....</string>
+    <string name="nSE">N° Sem. Epi.</string>
+    <string name="formatoFecha">(dd/mm/yyyy)</string>
+
 </resources>
