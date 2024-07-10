@@ -2,7 +2,12 @@ package com.example.app_epidengue.validaciones;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Validaciones {
 
@@ -51,6 +56,33 @@ public class Validaciones {
         } else{
             return  true;
         }
+    }
+
+
+    public void validarFichaDengue(EditText editTextFecha1, EditText editTextFecha2, EditText editTextFecha3 ) {
+        if (areDatesValid(editTextFecha1,editTextFecha2,editTextFecha3)) {
+            mensajeToast("Todas las fechas son válidas");
+        } else {
+            mensajeToast("Todas las fechas son válidas");
+        }
+    }
+
+    private boolean areDatesValid(EditText editTextFecha1, EditText editTextFecha2, EditText editTextFecha3) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        sdf.setLenient(false);
+        try {
+            Date date1 = sdf.parse(editTextFecha1.getText().toString());
+            Date date2 = sdf.parse(editTextFecha2.getText().toString());
+            Date date3 = sdf.parse(editTextFecha3.getText().toString());
+            Date currentDate = new Date();
+
+            if (date1.after(currentDate) || date2.after(currentDate) || date3.after(currentDate)) {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     public String getStrSintomas(String s1, String s2, String s3){

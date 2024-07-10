@@ -2,6 +2,7 @@ package com.example.app_epidengue.Repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class FichaDengueDB {
@@ -28,6 +29,64 @@ public class FichaDengueDB {
         return result != -1;
     }
 
+    public String getLastPacienteId() {
+        SQLiteDatabase db = this.dbHelp.getReadableDatabase();
+        Cursor cursor = null;
+        String lastId = null;
+        try {
+            cursor = db.rawQuery("SELECT DNI FROM paciente ORDER BY ROWID DESC LIMIT 1", null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("DNI");
+                if (index != -1) {
+                    lastId = cursor.getString(index);
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return lastId;
+    }
 
+    public int getLastDiagnosticoId() {
+        SQLiteDatabase db = this.dbHelp.getReadableDatabase();
+        Cursor cursor = null;
+        int lastId = -1;
+        try {
+            cursor = db.rawQuery("SELECT id_diagnostico FROM diagnostico ORDER BY id_diagnostico DESC LIMIT 1", null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("id_diagnostico");
+                if (index != -1) {
+                    lastId = cursor.getInt(index);
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return lastId;
+    }
+
+    public int getLastLugarInfeccionId() {
+        SQLiteDatabase db = this.dbHelp.getReadableDatabase();
+        Cursor cursor = null;
+        int lastId = -1;
+        try {
+            cursor = db.rawQuery("SELECT id_lugar_infeccion FROM lugar_de_probable_infeccion ORDER BY id_lugar_infeccion DESC LIMIT 1", null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("id_lugar_infeccion");
+                if (index != -1) {
+                    lastId = cursor.getInt(index);
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return lastId;
+    }
 
 }
