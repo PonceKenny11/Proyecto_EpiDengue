@@ -5,4 +5,12 @@
     <string name="s_ingresar">Iniciar Sesión</string>
     <string name="s_next">Siguiente</string>
     <string name="s_backward">Atrás</string>
+
+    <string name="idlugar">lugar de infeccion</string>
+    <string name="direccion">direccion</string>
+    <string name="departamento">departamento</string>
+    <string name="provincia">provincia</string>
+    <string name="distrito">distrito</string>
+    <string name="latitud">latitud</string>
+    <string name="longitud">longitud</string>
 </resources>
