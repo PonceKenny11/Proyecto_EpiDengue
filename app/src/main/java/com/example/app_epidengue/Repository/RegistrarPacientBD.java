@@ -43,23 +43,19 @@ public class RegistrarPacientBD {
         }
     }
 
-    public boolean deletePatientByDNI(String dni) {
-        SQLiteDatabase db = this.dbHelp.getWritableDatabase();
-        int result = db.delete("paciente", "DNI = ?", new String[]{dni});
-        return result > 0;
-    }
 
-    public boolean sendPacienteTemp(String dni,String nombreComplet, String edad, String sexo, String telefono){
+    public boolean sendPacienteTemp(String dni,String nombreComplet, int  edad, String sexo, String telefono){
         SharedPreferences sharedPreferences = context.getSharedPreferences("PacienteRegistrado", Context.MODE_PRIVATE);
         SharedPreferences.Editor editarShared = sharedPreferences.edit();
         // Guardar los valores en SharedPreferences
         editarShared.putBoolean("isRegistered1", true);
-        int edadInt = Integer.parseInt(edad);
+
 
 
         editarShared.putString("dni", dni);
         editarShared.putString("nombreCompleto", nombreComplet);
-        editarShared.putInt("edad",edadInt);
+        editarShared.putInt("edad",edad);
+        editarShared.putString("sexo", sexo);
         editarShared.putString("telefono", telefono);
 
         // Aplicar los cambios
@@ -75,7 +71,7 @@ public class RegistrarPacientBD {
         String savedTelefono = prefsCheck.getString("telefono", "");
 
         return (isRegistered && dni.equals(savedDni) && nombreComplet.equals(savedNombreCompleto) &&
-                edadInt == savedEdad && sexo.equals(savedSexo) && telefono.equals(savedTelefono));
+                edad == savedEdad && sexo.equals(savedSexo) && telefono.equals(savedTelefono));
 
     }
 
@@ -83,13 +79,13 @@ public class RegistrarPacientBD {
 
     //////////////////PRIVATE/////////////////////////////////////////
 
-    private boolean insertPaciente(String dni,String nombreComplet, String edad, String sexo, String telefono) {
+    public boolean insertPaciente(String dni,String nombreComplet, int edad, String sexo, String telefono) {
         SQLiteDatabase db = this.dbHelp.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        int edadInt = Integer.parseInt(edad);
+
         contentValues.put("DNI", dni);
         contentValues.put("NombreCompleto", nombreComplet);
-        contentValues.put("Edad", edadInt);
+        contentValues.put("Edad", edad);
         contentValues.put("Sexo", sexo);
         contentValues.put("NroTelefono", telefono);
 
@@ -97,6 +93,13 @@ public class RegistrarPacientBD {
         return result != -1;
     }
 
+
+
+    public boolean deletePatientByDNI(String dni) {
+        SQLiteDatabase db = this.dbHelp.getWritableDatabase();
+        int result = db.delete("paciente", "DNI = ?", new String[]{dni});
+        return result > 0;
+    }
 
 
     private Cursor getPatientByDNI(String dni) {

@@ -83,7 +83,9 @@
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
+        android:hint="@string/direccion"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/iddepartamento"
         app:layout_constraintEnd_toEndOf="@+id/iddepartamento" />
 
@@ -94,7 +96,9 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="41dp"
         android:ems="10"
+        android:hint="@string/departamento"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -105,7 +109,9 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="5dp"
         android:ems="10"
+        android:hint="@string/provincia"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/iddepartamento"
         app:layout_constraintTop_toBottomOf="@+id/iddepartamento" />
 
@@ -116,7 +122,9 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
+        android:hint="@string/distrito"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/idprovincia"
         app:layout_constraintTop_toBottomOf="@+id/idprovincia" />
 
@@ -125,9 +133,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
+        android:hint="@string/longitud"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/idlatitud"
         app:layout_constraintEnd_toEndOf="@+id/idlatitud" />
 
@@ -135,10 +145,13 @@
         android:id="@+id/idlatitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
+        android:hint="@string/longitud"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/iddistrito"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/iddistrito"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -146,12 +159,16 @@
         android:id="@+id/idlugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
+        android:hint="@string/idlugar"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/iddireccion"
-        app:layout_constraintStart_toEndOf="@+id/textView13" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
         android:id="@+id/textView20"
@@ -159,5 +176,38 @@
         android:layout_height="wrap_content"
         android:text="reporte de Ubicacion"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="53dp" />
+        tools:layout_editor_absoluteY="53dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/s_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="91dp"
+        android:text="@string/s_backward"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <ProgressBar
+        android:id="@+id/loadDengue"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="34dp"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
 </androidx.constraintlayout.widget.ConstraintLayout>
