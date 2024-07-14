@@ -71,7 +71,7 @@ public class RegistrarPaciente extends AppCompatActivity {
         if(selectId != -1){
             RadioButton rdoSex = findViewById(selectId);
             data = rdoSex.getText().toString();
-            Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
             return  data;
         }else{
             Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();

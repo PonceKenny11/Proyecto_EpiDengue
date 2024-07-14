@@ -2,7 +2,9 @@ package com.example.app_epidengue;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.app_epidengue.Repository.DiagnosticoDB;
 import com.example.app_epidengue.Repository.RegistrarPacientBD;
+import com.example.app_epidengue.Repository.UbicacionDB;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,10 +27,12 @@ public class UbicacionInfeccion extends AppCompatActivity {
     private String pac_dni,pac_names,pac_sex,pac_telef; private int pac_edad;
     private String diag_names, diag_tipo,diag_sintom; private float diag_fiebre;
 
+    private EditText  txtDireccion, txtDepartamento, txtProvincia, txtDistrito, txtLatitud, txtLongitud;
     private ProgressBar loadbar;
     private RegistrarPacientBD pacientBD;
     private DiagnosticoDB diagnosticoDB;
 
+    private UbicacionDB ubicacionDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,15 @@ public class UbicacionInfeccion extends AppCompatActivity {
         });
         pacientBD = new RegistrarPacientBD(this);
         diagnosticoDB = new DiagnosticoDB(this);
+        ubicacionDB = new UbicacionDB(this);
         loadbar = findViewById(R.id.loadDengue);
+        txtDepartamento = findViewById(R.id.iddepartamento);
+        txtDistrito = findViewById(R.id.iddistrito);
+        txtProvincia = findViewById(R.id.idprovincia);
+        txtDireccion = findViewById(R.id.iddireccion);
+        txtLatitud = findViewById(R.id.idlatitud);
+        txtLongitud = findViewById(R.id.idlongitud);
+
     }
 
 
@@ -71,38 +84,45 @@ public class UbicacionInfeccion extends AppCompatActivity {
         return diagnosticoDB.insertDiagnostico(diag_names,diag_tipo,diag_fiebre,diag_sintom) && isRegistered2;
     }
 
+    private void ingresadoLugarInfeccion(){
+        String direccion = txtDireccion.getText().toString().trim();
+        String departamento = txtDepartamento.getText().toString().trim();
+        String provincia = txtProvincia.getText().toString().trim();
+        String distrito = txtDistrito.getText().toString().trim();
+        String latitudStr = txtLatitud.getText().toString().trim();
+        String longitudStr = txtLongitud.getText().toString().trim();
+
+        if (TextUtils.isEmpty(direccion) || TextUtils.isEmpty(departamento) || TextUtils.isEmpty(provincia)
+                || TextUtils.isEmpty(distrito) || TextUtils.isEmpty(latitudStr) || TextUtils.isEmpty(longitudStr)) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+
+        }
+
+        double latitud = 0.0, longitud = 0.0;
+        try {
+            latitud = Double.parseDouble(latitudStr);
+            longitud = Double.parseDouble(longitudStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Por favor, ingrese valores válidos para latitud y longitud", Toast.LENGTH_SHORT).show();
+        }
+
+        if (ubicacionDB.insertLugarInfeccion(direccion,departamento,provincia,distrito,latitud,longitud)){
+            Toast.makeText(this, "Lugar infeccion detectado", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Error DB lugar infeccion", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
 
     public void registraDatosLoad(View view){
         loadbar.setVisibility(View.VISIBLE);
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        /*Future<Boolean> result = executor.submit(() -> {
 
-            boolean pacientRegistered = captureAndSavePacient();
-            boolean diagnostRegistered = captureAndSaveDiagnost();
-
-            if (!pacientRegistered || !diagnostRegistered) {
-                return false;
-            }
-
-            boolean lugarInfeccionInserted = dbHelper.insertLugarInfeccion(direccion, departamento, provincia, distrito, latitud, longitud);
-
-            if (!lugarInfeccionInserted) {
-                return false;
-            }
-
-            String idPaciente = dbHelper.getLastPacienteId();
-            int idDiagnostico = dbHelper.getLastDiagnosticoId();
-            int idLugarInfeccion = dbHelper.getLastLugarInfeccionId();
-
-            if (idPaciente == null || idDiagnostico == -1 || idLugarInfeccion == -1) {
-                return false;
-            }
-
-            return dbHelper.insertFichaPaciente(idPaciente, idDiagnostico, idLugarInfeccion, 0, "", "", 0, "", "");
-        });*/
 
         Future<Boolean> result = executor.submit(() -> {
-
+            ingresadoLugarInfeccion();
             return captureAndSaveDiagnost() && captureAndSavePacient();
         });
 

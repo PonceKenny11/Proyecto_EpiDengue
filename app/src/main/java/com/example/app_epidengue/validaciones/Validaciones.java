@@ -59,9 +59,12 @@ public class Validaciones {
     }
 
 
-    public void validarFichaDengue(EditText editTextFecha1, EditText editTextFecha2, EditText editTextFecha3 ) {
+    public void validarFichaDengue(EditText editTextFecha1, EditText editTextFecha2, EditText editTextFecha3,int idDiagnostico,
+                                   int idLugarInfeccion, String idPaciente) {
         if (areDatesValid(editTextFecha1,editTextFecha2,editTextFecha3)) {
             mensajeToast("Todas las fechas son válidas");
+        } else if (idPaciente == null || idDiagnostico == -1 || idLugarInfeccion == -1) {
+            mensajeToast("Error en obtener indentificadores de las tablas");
         } else {
             mensajeToast("Todas las fechas son válidas");
         }

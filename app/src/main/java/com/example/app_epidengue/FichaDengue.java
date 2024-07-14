@@ -7,12 +7,16 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.app_epidengue.Repository.FichaDengueDB;
+import com.example.app_epidengue.validaciones.Validaciones;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,7 +28,8 @@ public class FichaDengue extends AppCompatActivity {
 
     private EditText txtFHospitalizados,txtFMuestraLabortorio,txtFIniSintomas,NroSE,NroHC;
     private Spinner cboEstablecimiento;
-
+    private FichaDengueDB fichaDB;
+    private Validaciones validar;
     private int año, mes, dia;
 
     @Override
@@ -61,8 +66,37 @@ public class FichaDengue extends AppCompatActivity {
         adapterEES.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         cboEstablecimiento.setAdapter(adapterEES);
+
+        fichaDB = new FichaDengueDB(this);
+        validar = new Validaciones(this);
     }
 
+    public void insertandoFichaFinal(View view){
+        String historiaClinicaStr = NroHC.getText().toString().trim();
+        String establecimientoSalud = cboEstablecimiento.getSelectedItem().toString();
+        String fechaInicioSintomas = txtFIniSintomas.getText().toString().trim();
+        String semanaEpidemiologicaStr = NroSE.getText().toString().trim();
+        String fechaHospitalizacion = txtFHospitalizados.getText().toString().trim();
+        String fechaMuestraLaboratorio = txtFMuestraLabortorio.getText().toString().trim();
+
+
+        String idPaciente = fichaDB.getLastPacienteId();
+        int idDiagnostico = fichaDB.getLastDiagnosticoId();
+        int idLugarInfeccion = fichaDB.getLastLugarInfeccionId();
+
+        int nroHC = Integer.parseInt(historiaClinicaStr);
+        int nroSeEpi = Integer.parseInt(semanaEpidemiologicaStr);
+
+        validar.validarFichaDengue(txtFHospitalizados,txtFMuestraLabortorio,txtFIniSintomas, idDiagnostico, idLugarInfeccion, idPaciente);
+        boolean isRegister = fichaDB.insertFichaPaciente(idPaciente,idDiagnostico,idLugarInfeccion, nroHC, establecimientoSalud,
+                fechaInicioSintomas,nroSeEpi,fechaHospitalizacion,fechaMuestraLaboratorio);
+
+        if (isRegister){
+            Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "ERROR - NO SE PUDO REGISTRAR TBL  ", Toast.LENGTH_SHORT).show();
+        }
+    }
     public void showValiDate1(View view) {
         showDatePickerDialog(txtFIniSintomas);
     }
@@ -96,6 +130,12 @@ public class FichaDengue extends AppCompatActivity {
                 // Formato de fecha
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
                 editText.setText(sdf.format(selectedDate.getTime()));
+
+                if (editText == txtFIniSintomas) {
+                    int epidemiologicalWeek = getEpidemiologicalWeek(selectedDate);
+                    String mostrarSEPI =String.valueOf(epidemiologicalWeek) ;
+                    NroSE.setText(mostrarSEPI);
+                }
             }
         }, año, mes, dia);
         datePickerDialog.getDatePicker().setMaxDate(new Date().getTime()); // Establecer la fecha máxima al día actual

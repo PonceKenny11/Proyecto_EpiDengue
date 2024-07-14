@@ -8,15 +8,6 @@
     tools:context=".UbicacionInfeccion">
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/idlugar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/idlugar"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -155,21 +146,6 @@
         app:layout_constraintStart_toStartOf="@+id/iddistrito"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-    <EditText
-        android:id="@+id/idlugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="48dp"
-        android:ems="10"
-        android:hint="@string/idlugar"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/iddireccion"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
@@ -180,7 +156,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnSiguiente3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -190,7 +166,7 @@
         app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnAtras3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
@@ -207,7 +183,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="34dp"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/btnSiguiente3"
+        app:layout_constraintStart_toEndOf="@+id/btnAtras3"
         app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
 </androidx.constraintlayout.widget.ConstraintLayout>
