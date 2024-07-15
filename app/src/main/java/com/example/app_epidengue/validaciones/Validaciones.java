@@ -40,7 +40,7 @@ public class Validaciones {
         if (TextUtils.isEmpty(fiebreStr) || selectCboDiag.equals("Seleccione....") || selectCboTipo.equals("Seleccione....")) {
             mensajeToast("Por favor, complete todos los campos");
             return false;
-        } else if (fiebre >= 37.5 && fiebre <= 40.0) {
+        } else if (fiebre < 37.5 && fiebre > 40.0) {
             try {
                 mensajeToast("Se considera si hubo Fiebre entre: 37.5 y 40 grados");
                 return false;

@@ -1,6 +1,7 @@
 package com.example.app_epidengue;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -93,6 +94,9 @@ public class FichaDengue extends AppCompatActivity {
 
         if (isRegister){
             Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
+            Intent instanciar4= new Intent(this, Home.class);
+            startActivity(instanciar4);
+            finish();
         }else{
             Toast.makeText(this, "ERROR - NO SE PUDO REGISTRAR TBL  ", Toast.LENGTH_SHORT).show();
         }

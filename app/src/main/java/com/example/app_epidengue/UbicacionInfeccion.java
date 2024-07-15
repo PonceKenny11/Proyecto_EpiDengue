@@ -1,5 +1,6 @@
 package com.example.app_epidengue;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -58,7 +59,7 @@ public class UbicacionInfeccion extends AppCompatActivity {
     }
 
 
-    private boolean captureAndSavePacient(){
+    private boolean captureAndSavePacient() {
         SharedPreferences sharedPref1 = getSharedPreferences("PacienteRegistrado", MODE_PRIVATE);
         boolean isRegistered1 = sharedPref1.getBoolean("isRegistered1", false);
 
@@ -68,23 +69,22 @@ public class UbicacionInfeccion extends AppCompatActivity {
         pac_sex = sharedPref1.getString("sexo", "");
         pac_telef = sharedPref1.getString("telefono", "");
 
-        return pacientBD.insertPaciente(pac_dni,pac_names,pac_edad,pac_sex,pac_telef) && isRegistered1;
+        return pacientBD.insertPaciente(pac_dni, pac_names, pac_edad, pac_sex, pac_telef) && isRegistered1;
     }
 
-    private boolean captureAndSaveDiagnost(){
+    private boolean captureAndSaveDiagnost() {
         SharedPreferences sharedPref2 = getSharedPreferences("DiagnosticoRegistrado", MODE_PRIVATE);
-
         boolean isRegistered2 = sharedPref2.getBoolean("isRegistered2", false);
+
         diag_names = sharedPref2.getString("nombreDiagnostico", "");
         diag_tipo = sharedPref2.getString("tipoDiagnostico", "");
         diag_fiebre = sharedPref2.getFloat("fiebre", -1);
         diag_sintom = sharedPref2.getString("sintomas", "");
 
-
-        return diagnosticoDB.insertDiagnostico(diag_names,diag_tipo,diag_fiebre,diag_sintom) && isRegistered2;
+        return diagnosticoDB.insertDiagnostico(diag_names, diag_tipo, diag_fiebre, diag_sintom) && isRegistered2;
     }
 
-    private void ingresadoLugarInfeccion(){
+    private boolean ingresadoLugarInfeccion() {
         String direccion = txtDireccion.getText().toString().trim();
         String departamento = txtDepartamento.getText().toString().trim();
         String provincia = txtProvincia.getText().toString().trim();
@@ -94,36 +94,37 @@ public class UbicacionInfeccion extends AppCompatActivity {
 
         if (TextUtils.isEmpty(direccion) || TextUtils.isEmpty(departamento) || TextUtils.isEmpty(provincia)
                 || TextUtils.isEmpty(distrito) || TextUtils.isEmpty(latitudStr) || TextUtils.isEmpty(longitudStr)) {
-            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
-
+            runOnUiThread(() -> Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show());
+            return false;
         }
 
-        double latitud = 0.0, longitud = 0.0;
+        double latitud, longitud;
         try {
             latitud = Double.parseDouble(latitudStr);
             longitud = Double.parseDouble(longitudStr);
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Por favor, ingrese valores válidos para latitud y longitud", Toast.LENGTH_SHORT).show();
+            runOnUiThread(() -> Toast.makeText(this, "Por favor, ingrese valores válidos para latitud y longitud", Toast.LENGTH_SHORT).show());
+            return false;
         }
 
-        if (ubicacionDB.insertLugarInfeccion(direccion,departamento,provincia,distrito,latitud,longitud)){
-            Toast.makeText(this, "Lugar infeccion detectado", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "Error DB lugar infeccion", Toast.LENGTH_SHORT).show();
-        }
-
-
-
+        return ubicacionDB.insertLugarInfeccion(direccion, departamento, provincia, distrito, latitud, longitud);
     }
 
-    public void registraDatosLoad(View view){
+    public void retrocederPestana(View view) {
+        Intent instanciar2 = new Intent(this, DiagnosticoPaciente.class);
+        startActivity(instanciar2);
+        finish();
+    }
+
+    public void registraDatosLoad(View view) {
         loadbar.setVisibility(View.VISIBLE);
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
-
         Future<Boolean> result = executor.submit(() -> {
-            ingresadoLugarInfeccion();
-            return captureAndSaveDiagnost() && captureAndSavePacient();
+            if (ingresadoLugarInfeccion()) {
+                return captureAndSaveDiagnost() && captureAndSavePacient();
+            }
+            return false;
         });
 
         executor.execute(() -> {
@@ -133,6 +134,9 @@ public class UbicacionInfeccion extends AppCompatActivity {
                     loadbar.setVisibility(View.GONE);
                     if (insertResult) {
                         Toast.makeText(UbicacionInfeccion.this, "Ficha de paciente registrada exitosamente", Toast.LENGTH_SHORT).show();
+                        Intent instanciar3 = new Intent(this, FichaDengue.class);
+                        startActivity(instanciar3);
+                        finish();
                     } else {
                         Toast.makeText(UbicacionInfeccion.this, "Error al registrar la ficha de paciente", Toast.LENGTH_SHORT).show();
                     }
@@ -147,31 +151,6 @@ public class UbicacionInfeccion extends AppCompatActivity {
             }
         });
     }
-
-
-    /* public void NextOrNoPaciente(View view){
-        // Mostrar el cuadro de diálogo de confirmación
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmar Registro");
-        builder.setMessage("¿Está seguro de que desea guardar estos datos?");
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // Registrar el diagnóstico
-                validarPaciente();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }*/
-
-
-
-
 
     /////////////////////////////////////////////
 

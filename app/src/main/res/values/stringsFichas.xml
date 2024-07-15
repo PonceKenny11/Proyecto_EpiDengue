@@ -18,5 +18,5 @@
     <string name="nHistoria">N° HC....</string>
     <string name="nSE">N° Sem. Epi.</string>
     <string name="formatoFecha">(dd/mm/yyyy)</string>
-
+    <string name="regissterComplet">Registro Completo</string>
 </resources>

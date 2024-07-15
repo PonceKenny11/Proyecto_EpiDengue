@@ -1,5 +1,6 @@
 package com.example.app_epidengue;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -102,7 +103,7 @@ public class DiagnosticoPaciente extends AppCompatActivity {
 
     }
     /////////////////////////////ONCLICK///////////////////////////
-    public void startInsertDiag(View view){
+    public void startRegistrarDiag(View view){
         iniciarDatos();
         float fiebre = Float.parseFloat(fiebreStr);
 
@@ -115,12 +116,19 @@ public class DiagnosticoPaciente extends AppCompatActivity {
 
 
 
+    public void retrocederPestana(View view){
+        Intent instanciar2= new Intent(this, RegistrarPaciente.class);
+        startActivity(instanciar2);
+        finish();
+    }
 
     private void dataAlreadyEntered(boolean isInserted, boolean isValited){
         if (isInserted && isValited) {
             Toast.makeText(this, "Diagnóstico registrado exitosamente", Toast.LENGTH_SHORT).show();
             txtFiebre.setText("");
-
+            Intent instanciar= new Intent(this, UbicacionInfeccion.class);
+            startActivity(instanciar);
+            finish();
         } else {
             Toast.makeText(this, "Error al registrar el diagnóstico", Toast.LENGTH_SHORT).show();
         }
