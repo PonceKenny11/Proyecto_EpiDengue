@@ -31,7 +31,7 @@
             android:name=".ReportesDengue"
             android:exported="false" />
         <activity
-            android:name=".UbicacionInfeccion"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".FichaDengue"
@@ -40,7 +40,7 @@
             android:name=".RegistrarPaciente"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UbicacionInfeccion"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

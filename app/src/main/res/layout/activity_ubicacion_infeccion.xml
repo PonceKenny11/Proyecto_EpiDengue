@@ -12,137 +12,194 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/idlugar"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="139dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintEnd_toStartOf="@+id/idlugar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="42dp"
         android:text="@string/direccion"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="188dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/iddireccion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="38dp"
         android:text="@string/departamento"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="229dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/iddepartamento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/provincia"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="276dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toStartOf="@+id/idprovincia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="39dp"
         android:text="@string/distrito"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="315dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="18dp"
         android:text="@string/longitud"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="374dp" />
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toStartOf="@+id/idlatitud"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="37dp"
         android:text="@string/latitud"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="425dp" />
+        app:layout_constraintBottom_toTopOf="@+id/idlatitud"
+        app:layout_constraintEnd_toStartOf="@+id/idlongitud"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <EditText
         android:id="@+id/iddireccion"
-        android:layout_width="138dp"
-        android:layout_height="35dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="44dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="179dp" />
+        app:layout_constraintBottom_toTopOf="@+id/iddepartamento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/idlugar" />
 
     <EditText
         android:id="@+id/iddepartamento"
-        android:layout_width="126dp"
-        android:layout_height="29dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="59dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="229dp" />
+        app:layout_constraintBottom_toTopOf="@+id/idprovincia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/iddireccion" />
 
     <EditText
         android:id="@+id/idprovincia"
-        android:layout_width="147dp"
-        android:layout_height="26dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="43dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="276dp" />
-
-    <EditText
-        android:id="@+id/iddistrito"
-        android:layout_width="158dp"
-        android:layout_height="30dp"
-        android:ems="10"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="315dp" />
+        app:layout_constraintBottom_toTopOf="@+id/idlongitud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/iddepartamento" />
 
     <EditText
         android:id="@+id/idlongitud"
-        android:layout_width="135dp"
-        android:layout_height="31dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="88dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="361dp" />
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/idprovincia" />
+
 
     <EditText
         android:id="@+id/idlatitud"
-        android:layout_width="148dp"
-        android:layout_height="36dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="408dp" />
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <EditText
         android:id="@+id/idlugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="34dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="125dp" />
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="242dp"
-        android:layout_height="169dp"
-        map:cameraZoom="10"
-        map:uiRotateGestures="true"
-        map:uiZoomcontrols="true"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="468dp" />
+        app:layout_constraintBottom_toTopOf="@+id/iddireccion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="46dp"
         android:text="reporte de Ubicacion"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="53dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="@+id/map"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idlongitud"
+        map:cameraZoom="10"
+        map:uiRotateGestures="true"
+        map:uiZoomControls="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
