@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/btningresar"
     android:layout_width="match_parent"
@@ -11,147 +12,131 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="@string/idlugar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/idlugar"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="139dp" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="214dp"
         android:text="@string/direccion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="188dp" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginBottom="1dp"
         android:text="@string/departamento"
-        app:layout_constraintBottom_toBottomOf="@+id/iddepartamento"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="229dp" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="47dp"
         android:text="@string/provincia"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="276dp" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="39dp"
         android:text="@string/distrito"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="315dp" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="33dp"
         android:text="@string/longitud"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="374dp" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="50dp"
         android:text="@string/latitud"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="425dp" />
 
     <EditText
         android:id="@+id/iddireccion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="138dp"
+        android:layout_height="35dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/iddepartamento"
-        app:layout_constraintEnd_toEndOf="@+id/iddepartamento" />
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="179dp" />
 
     <EditText
         android:id="@+id/iddepartamento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="41dp"
+        android:layout_width="126dp"
+        android:layout_height="29dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="229dp" />
 
     <EditText
         android:id="@+id/idprovincia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="5dp"
+        android:layout_width="147dp"
+        android:layout_height="26dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/iddepartamento"
-        app:layout_constraintTop_toBottomOf="@+id/iddepartamento" />
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="276dp" />
 
     <EditText
         android:id="@+id/iddistrito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_width="158dp"
+        android:layout_height="30dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/idprovincia"
-        app:layout_constraintTop_toBottomOf="@+id/idprovincia" />
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="315dp" />
 
     <EditText
         android:id="@+id/idlongitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="135dp"
+        android:layout_height="31dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/idlatitud"
-        app:layout_constraintEnd_toEndOf="@+id/idlatitud" />
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="361dp" />
 
     <EditText
         android:id="@+id/idlatitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="148dp"
+        android:layout_height="36dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/iddistrito"
-        app:layout_constraintStart_toStartOf="@+id/iddistrito"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="408dp" />
 
     <EditText
         android:id="@+id/idlugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginBottom="27dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/iddireccion"
-        app:layout_constraintStart_toEndOf="@+id/textView13" />
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="125dp" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="242dp"
+        android:layout_height="169dp"
+        map:cameraZoom="10"
+        map:uiRotateGestures="true"
+        map:uiZoomcontrols="true"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="468dp" />
 
     <TextView
         android:id="@+id/textView20"

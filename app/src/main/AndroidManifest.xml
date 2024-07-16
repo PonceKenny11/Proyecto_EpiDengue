@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_EpiDengue"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDSYyPZfqt_FD0HJ47WeNPyZzhrvuJEBZw"
+            />
+
         <activity
             android:name=".DiagnosticoPaciente"
             android:exported="false" />
