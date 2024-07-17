@@ -16,5 +16,5 @@
     <string name="longitud">longitud</string>
 
     <string name="f_paciente">FICHA PACIENTE - DENGUE</string>
-    <string name="f_historia">Historia Clinica</string>
+    <string name="f_historia">N° Hc</string>
 </resources>
