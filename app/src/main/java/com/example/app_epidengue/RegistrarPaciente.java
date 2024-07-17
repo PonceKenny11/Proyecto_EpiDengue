@@ -46,40 +46,43 @@ public class RegistrarPaciente extends AppCompatActivity {
 
     }
 
-    public void insertarPacienteTemp(View view){
+    public void insertarPacienteTemp(View view) {
         String dni = txtDNI.getText().toString().trim();
         String nombreCompleto = txtNombreApellidos.getText().toString().trim();
         String edadStr = txtEdad.getText().toString().trim();
         String telefono = txtNTelefono.getText().toString().trim();
+        String sexo = getSexo();
+
+        if (!validar.validarPaciente(dni, nombreCompleto, edadStr, sexo, telefono)) {
+            return;
+        }
 
         int edad = Integer.parseInt(edadStr);
-        boolean isRegistered = pacienteBD.sendPacienteTemp(dni,nombreCompleto,edad,getSexo(),telefono);//debe devolver true si se guardo correctamente
-        boolean isValidated = validar.validarPaciente(dni,nombreCompleto,edadStr,getSexo(),telefono,isRegistered);
+        boolean isRegistered = pacienteBD.sendPacienteTemp(dni, nombreCompleto, edad, sexo, telefono);
 
-        if (isValidated){
-            Intent instanciar= new Intent(this, DiagnosticoPaciente.class);
+        if (isRegistered) {
+            Toast.makeText(this, "Paciente registrado correctamente", Toast.LENGTH_SHORT).show();
+            Intent instanciar = new Intent(this, DiagnosticoPaciente.class);
             startActivity(instanciar);
             finish();
-        }else{
+        } else {
+            Toast.makeText(this, "Error al registrar el paciente", Toast.LENGTH_SHORT).show();
             limpiarCampos();
         }
     }
 
-    private String getSexo(){
-        String data;
+    private String getSexo() {
         int selectId = rdoGroup.getCheckedRadioButtonId();
-        if(selectId != -1){
+        if (selectId != -1) {
             RadioButton rdoSex = findViewById(selectId);
-            data = rdoSex.getText().toString();
-            //Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
-            return  data;
-        }else{
-            Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();
+            return rdoSex.getText().toString();
+        } else {
+            Toast.makeText(this, "Por favor, seleccione el sexo", Toast.LENGTH_SHORT).show();
             return null;
         }
     }
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         txtDNI.setText("");
         txtNombreApellidos.setText("");
         txtEdad.setText("");
@@ -88,9 +91,7 @@ public class RegistrarPaciente extends AppCompatActivity {
         txtDNI.requestFocus();
     }
 
-
-
-    public void validarDNI(View view){
-        //inicializandoData();
+    public void validarDNI(View view) {
+        // Implementar la lógica de validación del DNI si es necesario
     }
 }

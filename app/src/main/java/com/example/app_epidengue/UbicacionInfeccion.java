@@ -1,12 +1,13 @@
 package com.example.app_epidengue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,21 +20,17 @@ import com.example.app_epidengue.Repository.DiagnosticoDB;
 import com.example.app_epidengue.Repository.RegistrarPacientBD;
 import com.example.app_epidengue.Repository.UbicacionDB;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 public class UbicacionInfeccion extends AppCompatActivity {
 
-    private String pac_dni,pac_names,pac_sex,pac_telef; private int pac_edad;
-    private String diag_names, diag_tipo,diag_sintom; private float diag_fiebre;
+
 
     private EditText  txtDireccion, txtDepartamento, txtProvincia, txtDistrito, txtLatitud, txtLongitud;
-    private ProgressBar loadbar;
+
     private RegistrarPacientBD pacientBD;
     private DiagnosticoDB diagnosticoDB;
 
     private UbicacionDB ubicacionDB;
+    private static final String TAG = "UbicacionInfeccion";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class UbicacionInfeccion extends AppCompatActivity {
         pacientBD = new RegistrarPacientBD(this);
         diagnosticoDB = new DiagnosticoDB(this);
         ubicacionDB = new UbicacionDB(this);
-        loadbar = findViewById(R.id.loadDengue);
+
         txtDepartamento = findViewById(R.id.iddepartamento);
         txtDistrito = findViewById(R.id.iddistrito);
         txtProvincia = findViewById(R.id.idprovincia);
@@ -58,30 +55,29 @@ public class UbicacionInfeccion extends AppCompatActivity {
 
     }
 
-
     private boolean captureAndSavePacient() {
-        SharedPreferences sharedPref1 = getSharedPreferences("PacienteRegistrado", MODE_PRIVATE);
-        boolean isRegistered1 = sharedPref1.getBoolean("isRegistered1", false);
+        SharedPreferences prefsCheck = this.getSharedPreferences("PacienteRegistrado", Context.MODE_PRIVATE);
+        boolean isRegistered1 = prefsCheck.getBoolean("isRegistered1", false);
+        String savedDni = prefsCheck.getString("dni", "");
+        String savedNombreCompleto = prefsCheck.getString("nombreCompleto", "");
+        int savedEdad = prefsCheck.getInt("edad", -1);
+        String savedSexo = prefsCheck.getString("sexo", "");
+        String savedTelefono = prefsCheck.getString("telefono", "");
 
-        pac_dni = sharedPref1.getString("dni", "");
-        pac_names = sharedPref1.getString("nombreCompleto", "");
-        pac_edad = sharedPref1.getInt("edad", -1);
-        pac_sex = sharedPref1.getString("sexo", "");
-        pac_telef = sharedPref1.getString("telefono", "");
-
-        return pacientBD.insertPaciente(pac_dni, pac_names, pac_edad, pac_sex, pac_telef) && isRegistered1;
+        Log.d(TAG, "Datos del paciente: DNI=" + savedDni + ", NombreCompleto=" + savedNombreCompleto + ", Edad=" + savedEdad + ", Sexo=" + savedSexo + ", Telefono=" + savedTelefono);
+        return pacientBD.insertPaciente(savedDni, savedNombreCompleto, savedEdad, savedSexo, savedTelefono) && isRegistered1;
     }
 
     private boolean captureAndSaveDiagnost() {
-        SharedPreferences sharedPref2 = getSharedPreferences("DiagnosticoRegistrado", MODE_PRIVATE);
-        boolean isRegistered2 = sharedPref2.getBoolean("isRegistered2", false);
+        SharedPreferences prefsCheck = this.getSharedPreferences("DiagnosticoRegistrado", Context.MODE_PRIVATE);
+        boolean isRegistered2 = prefsCheck.getBoolean("isRegistered2", false);
+        String savedNombreDiagnostico = prefsCheck.getString("nombreDiagnostico", "");
+        String savedTipoDiagnostico = prefsCheck.getString("tipoDiagnostico", "");
+        float savedFiebre = prefsCheck.getFloat("fiebre", -1);
+        String savedSintomas = prefsCheck.getString("sintomas", "");
 
-        diag_names = sharedPref2.getString("nombreDiagnostico", "");
-        diag_tipo = sharedPref2.getString("tipoDiagnostico", "");
-        diag_fiebre = sharedPref2.getFloat("fiebre", -1);
-        diag_sintom = sharedPref2.getString("sintomas", "");
-
-        return diagnosticoDB.insertDiagnostico(diag_names, diag_tipo, diag_fiebre, diag_sintom) && isRegistered2;
+        Log.d(TAG, "Datos del diagnóstico: NombreDiagnostico=" + savedNombreDiagnostico + ", TipoDiagnostico=" + savedTipoDiagnostico + ", Fiebre=" + savedFiebre + ", Sintomas=" + savedSintomas);
+        return diagnosticoDB.insertDiagnostico(savedNombreDiagnostico, savedTipoDiagnostico, savedFiebre, savedSintomas) && isRegistered2;
     }
 
     private boolean ingresadoLugarInfeccion() {
@@ -94,7 +90,7 @@ public class UbicacionInfeccion extends AppCompatActivity {
 
         if (TextUtils.isEmpty(direccion) || TextUtils.isEmpty(departamento) || TextUtils.isEmpty(provincia)
                 || TextUtils.isEmpty(distrito) || TextUtils.isEmpty(latitudStr) || TextUtils.isEmpty(longitudStr)) {
-            runOnUiThread(() -> Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show());
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -103,7 +99,7 @@ public class UbicacionInfeccion extends AppCompatActivity {
             latitud = Double.parseDouble(latitudStr);
             longitud = Double.parseDouble(longitudStr);
         } catch (NumberFormatException e) {
-            runOnUiThread(() -> Toast.makeText(this, "Por favor, ingrese valores válidos para latitud y longitud", Toast.LENGTH_SHORT).show());
+            Toast.makeText(this, "Por favor, ingrese valores válidos para latitud y longitud", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -117,41 +113,19 @@ public class UbicacionInfeccion extends AppCompatActivity {
     }
 
     public void registraDatosLoad(View view) {
-        loadbar.setVisibility(View.VISIBLE);
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+        boolean isLugarInfeccionIngresado = ingresadoLugarInfeccion();
+        boolean isDiagnosticoGuardado = captureAndSaveDiagnost();
+        boolean isPacienteGuardado = captureAndSavePacient();
 
-        Future<Boolean> result = executor.submit(() -> {
-            if (ingresadoLugarInfeccion()) {
-                return captureAndSaveDiagnost() && captureAndSavePacient();
-            }
-            return false;
-        });
-
-        executor.execute(() -> {
-            try {
-                boolean insertResult = result.get();
-                runOnUiThread(() -> {
-                    loadbar.setVisibility(View.GONE);
-                    if (insertResult) {
-                        Toast.makeText(UbicacionInfeccion.this, "Ficha de paciente registrada exitosamente", Toast.LENGTH_SHORT).show();
-                        Intent instanciar3 = new Intent(this, FichaDengue.class);
-                        startActivity(instanciar3);
-                        finish();
-                    } else {
-                        Toast.makeText(UbicacionInfeccion.this, "Error al registrar la ficha de paciente", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } catch (Exception e) {
-                runOnUiThread(() -> {
-                    loadbar.setVisibility(View.GONE);
-                    Toast.makeText(UbicacionInfeccion.this, "Error al registrar la ficha de paciente", Toast.LENGTH_SHORT).show();
-                });
-            } finally {
-                executor.shutdown();
-            }
-        });
+        if (isLugarInfeccionIngresado && isDiagnosticoGuardado && isPacienteGuardado) {
+            Toast.makeText(this, "Ficha de paciente registrada exitosamente", Toast.LENGTH_SHORT).show();
+            Intent instanciar3 = new Intent(this, FichaDengue.class);
+            startActivity(instanciar3);
+            finish();
+        } else {
+            Toast.makeText(this, "Error al registrar la ficha de paciente", Toast.LENGTH_SHORT).show();
+        }
     }
-
     /////////////////////////////////////////////
 
 }

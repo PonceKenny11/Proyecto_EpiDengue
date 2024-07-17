@@ -177,16 +177,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-    <ProgressBar
-        android:id="@+id/loadDengue"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="34dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/btnSiguiente3"
-        app:layout_constraintStart_toEndOf="@+id/btnAtras3"
-        app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
 </androidx.constraintlayout.widget.ConstraintLayout>

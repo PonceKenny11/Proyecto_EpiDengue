@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.app_epidengue.Repository.DiagnosticoDB;
 import com.example.app_epidengue.Repository.RegistrarPacientBD;
 
 public class ReporteEpimiologico extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
     private TextView tvNombreCompleto, tvEdad, tvSexo;
 
     private RegistrarPacientBD pacientBD;
+    private DiagnosticoDB diagnosticoDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
         tvSexo = findViewById(R.id.tvSexo);
 
         pacientBD = new RegistrarPacientBD(this);
-
+        diagnosticoDB = new DiagnosticoDB(this);
 
 
     }
@@ -56,14 +58,14 @@ public class ReporteEpimiologico extends AppCompatActivity {
             etSearchDNI.requestFocus();
         }
 
-        boolean encontro = pacientBD.searchPatient(buscardni, tvNombreCompleto,tvEdad, tvSexo);
+        /*boolean encontro = pacientBD.searchPatient(buscardni, tvNombreCompleto,tvEdad, tvSexo);
         if(encontro){
             //tableLayout.setVisibility(View.VISIBLE);
             Toast.makeText(this, "Paciente  encontrado", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Paciente no encontrado", Toast.LENGTH_SHORT).show();
             tableLayout.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     public void EliminarPaciente(View view){
@@ -78,6 +80,21 @@ public class ReporteEpimiologico extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, "Catch al eliminar el paciente: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void EliminarDiagnostico(View view){
+        String dni = etSearchDNI.getText().toString().trim();
+        try {
+            boolean isDeleted = diagnosticoDB.deleteDiagnosticoByName(dni);
+            if (isDeleted) {
+                Toast.makeText(this, "Dianosticos eliminado exitosamente", Toast.LENGTH_SHORT).show();
+                tableLayout.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(this, "Error al eliminar el diagnostico", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Catch al eliminar el diagnostico: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
