@@ -10,6 +10,7 @@
     <string name="D_G">Dengue Grave</string>
     <string name="txtBuscar">DNI...</string>
     <string name="Search">Buscar</string>
+    <string name="Delete">Eliminar</string>
     <string name="txthistoria">Historia Clinica</string>
     <string name="FInicioSintoma">Fecha de Inicio de Sintoma</string>
     <string name="SemEpi">Semana Epidemiologica</string>
