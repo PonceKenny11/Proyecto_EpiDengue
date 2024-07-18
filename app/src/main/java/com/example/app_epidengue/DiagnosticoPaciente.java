@@ -43,16 +43,16 @@ public class DiagnosticoPaciente extends AppCompatActivity {
             return insets;
         });
 
-        inicalizandoParametros();
+        inicializarParametros();
         rellenarCombo();
     }
 
-    private void inicalizandoParametros(){
-        cboNombreDiagnostico = findViewById(R.id.cboDiagnostico);//spinners
-        cboTipoDiagnostico = findViewById(R.id.cboTipoDiag);//spinners
+    private void inicializarParametros() {
+        cboNombreDiagnostico = findViewById(R.id.cboDiagnostico);
+        cboTipoDiagnostico = findViewById(R.id.cboTipoDiag);
         txtFiebre = findViewById(R.id.txtFiebre);
 
-        diagDB = new DiagnosticoDB(this);//clase Diagnostico
+        diagDB = new DiagnosticoDB(this);
         validar = new Validaciones(this);
 
         CheckSS1 = findViewById(R.id.checkSS1);
@@ -68,72 +68,61 @@ public class DiagnosticoPaciente extends AppCompatActivity {
         CheckG1 = findViewById(R.id.checkG1);
         CheckG2 = findViewById(R.id.checkG2);
         CheckG3 = findViewById(R.id.checkG3);
-
-
     }
 
     private void rellenarCombo() {
         ArrayAdapter<CharSequence> adapterNombreDiagnostico = ArrayAdapter.createFromResource(this,
                 R.array.nombres_diagnostico, android.R.layout.simple_spinner_item);
-
         adapterNombreDiagnostico.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         cboNombreDiagnostico.setAdapter(adapterNombreDiagnostico);
 
         ArrayAdapter<CharSequence> adapterTipoDiagnostico = ArrayAdapter.createFromResource(this,
-                R.array.tipos_diagnostico, android.R.layout.simple_spinner_item);/*obtener desde string register datos para el Spinner*/
+                R.array.tipos_diagnostico, android.R.layout.simple_spinner_item);
         adapterTipoDiagnostico.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cboTipoDiagnostico.setAdapter(adapterTipoDiagnostico);
     }
 
-    private void iniciarDatos(){
+    private void iniciarDatos() {
         nombreDiagnostico = cboNombreDiagnostico.getSelectedItem().toString();
         tipoDiagnostico = cboTipoDiagnostico.getSelectedItem().toString();
         fiebreStr = txtFiebre.getText().toString().trim();
 
         // Obtener todos los datos seleccionados
-        selectDG= getSelectedCheckBoxData(
-                CheckG1,CheckG2,CheckG3);
-
-        selectDSSA = getSelectedCheckBoxData(
-                CheckSS1,CheckSS2,CheckSS3,CheckSS4);
-
-        selectDCSA = getSelectedCheckBoxData(
-                CheckCS1,CheckCS2,CheckCS3,CheckCS4);
-
+        selectDG = getSelectedCheckBoxData(CheckG1, CheckG2, CheckG3);
+        selectDSSA = getSelectedCheckBoxData(CheckSS1, CheckSS2, CheckSS3, CheckSS4);
+        selectDCSA = getSelectedCheckBoxData(CheckCS1, CheckCS2, CheckCS3, CheckCS4);
     }
+
     /////////////////////////////ONCLICK///////////////////////////
-    public void startRegistrarDiag(View view){
+    public void startRegistrarDiag(View view) {
         iniciarDatos();
-        float fiebre = Float.parseFloat(fiebreStr);
 
+        if (!validar.validarDiagnosticos(fiebreStr, nombreDiagnostico, tipoDiagnostico, selectDSSA, selectDCSA, selectDG)) {
+            return;
+        }
+
+        float fiebre = Float.parseFloat(fiebreStr); // Ya validado en `validarDiagnosticos`
         String sintomas = validar.getStrSintomas(selectDSSA, selectDCSA, selectDG);
-
-        boolean isValidated= validar.validarDiagnosticos(fiebreStr,nombreDiagnostico, tipoDiagnostico, selectDSSA, selectDCSA, selectDG);
         boolean isInserted = diagDB.sendDiagnosticoTemp(nombreDiagnostico, tipoDiagnostico, fiebre, sintomas);
-        dataAlreadyEntered(isInserted, isValidated);
+        dataAlreadyEntered(isInserted);
     }
 
-
-
-    public void retrocederPestana(View view){
-        Intent instanciar2= new Intent(this, RegistrarPaciente.class);
+    public void retrocederPestana(View view) {
+        Intent instanciar2 = new Intent(this, RegistrarPaciente.class);
         startActivity(instanciar2);
         finish();
     }
 
-    private void dataAlreadyEntered(boolean isInserted, boolean isValited){
-        if (isInserted && isValited) {
-            Toast.makeText(this, "Diagnóstico registrado exitosamente", Toast.LENGTH_SHORT).show();
-            txtFiebre.setText("");
-            Intent instanciar= new Intent(this, UbicacionInfeccion.class);
+    private void dataAlreadyEntered(boolean isInserted) {
+        if (isInserted) {
+            Toast.makeText(this, "Diagnóstico registrado", Toast.LENGTH_SHORT).show();
+            Intent instanciar = new Intent(this, UbicacionInfeccion.class);
             startActivity(instanciar);
             finish();
         } else {
             Toast.makeText(this, "Error al registrar el diagnóstico", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     // Método para obtener los datos seleccionados de un conjunto de CheckBox
     private String getSelectedCheckBoxData(CheckBox... checkBoxes) {

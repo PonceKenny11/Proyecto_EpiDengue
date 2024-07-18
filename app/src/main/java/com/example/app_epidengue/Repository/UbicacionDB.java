@@ -3,11 +3,13 @@ package com.example.app_epidengue.Repository;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class UbicacionDB {
     private DataBaseHelp dbHelp;
+    private static final String TAG = "UbicacionDB";
 
-    public UbicacionDB(Context context){
+    public UbicacionDB(Context context) {
         dbHelp = new DataBaseHelp(context);
     }
 
@@ -20,7 +22,12 @@ public class UbicacionDB {
         contentValues.put("Distrito", distrito);
         contentValues.put("latitud", latitud);
         contentValues.put("longitud", longitud);
-        long result = db.insert("lugar_de_probable_infeccion", null, contentValues);
+        long result = -1;
+        try {
+            result = db.insert("lugar_infeccion", null, contentValues);
+        } catch (Exception e) {
+            Log.e("UbicacionDB", "Error inserting lugar_infeccion: " + e.getMessage());
+        }
         return result != -1;
     }
 }

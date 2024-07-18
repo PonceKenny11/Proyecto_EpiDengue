@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -52,10 +51,9 @@ public class FichaDengue extends AppCompatActivity {
         txtFMuestraLabortorio = findViewById(R.id.txtFmuestraLab);
         txtFIniSintomas = findViewById(R.id.txtFIniSintom);
         NroHC = findViewById(R.id.txtNoHC);
-        NroSE= findViewById(R.id.nroSE);
+        NroSE = findViewById(R.id.nroSE);
         cboEstablecimiento = findViewById(R.id.cboESalud);
 
-        // Obtener la fecha actual
         final Calendar calendar = Calendar.getInstance();
         año = calendar.get(Calendar.YEAR);
         mes = calendar.get(Calendar.MONTH);
@@ -65,7 +63,6 @@ public class FichaDengue extends AppCompatActivity {
                 R.array.establecimientos_de_salud, android.R.layout.simple_spinner_item);
 
         adapterEES.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         cboEstablecimiento.setAdapter(adapterEES);
 
         fichaDB = new FichaDengueDB(this);
@@ -80,27 +77,32 @@ public class FichaDengue extends AppCompatActivity {
         String fechaHospitalizacion = txtFHospitalizados.getText().toString().trim();
         String fechaMuestraLaboratorio = txtFMuestraLabortorio.getText().toString().trim();
 
+        if (!validar.validarFichaDengue(txtFIniSintomas, txtFMuestraLabortorio, txtFHospitalizados, fichaDB.getLastDiagnosticoId(), fichaDB.getLastLugarInfeccionId(), fichaDB.getLastPacienteId())) {
+            return;
+        }
 
-        String idPaciente = fichaDB.getLastPacienteId();
-        int idDiagnostico = fichaDB.getLastDiagnosticoId();
-        int idLugarInfeccion = fichaDB.getLastLugarInfeccionId();
+        int nroHC, nroSeEpi;
+        try {
+            nroHC = Integer.parseInt(historiaClinicaStr);
+            nroSeEpi = Integer.parseInt(semanaEpidemiologicaStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Por favor, ingrese valores válidos para historia clínica y semana epidemiológica", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        int nroHC = Integer.parseInt(historiaClinicaStr);
-        int nroSeEpi = Integer.parseInt(semanaEpidemiologicaStr);
+        boolean isRegister = fichaDB.insertFichaPaciente(fichaDB.getLastPacienteId(), fichaDB.getLastDiagnosticoId(), fichaDB.getLastLugarInfeccionId(), nroHC, establecimientoSalud,
+                fechaInicioSintomas, nroSeEpi, fechaHospitalizacion, fechaMuestraLaboratorio);
 
-        validar.validarFichaDengue(txtFHospitalizados,txtFMuestraLabortorio,txtFIniSintomas, idDiagnostico, idLugarInfeccion, idPaciente);
-        boolean isRegister = fichaDB.insertFichaPaciente(idPaciente,idDiagnostico,idLugarInfeccion, nroHC, establecimientoSalud,
-                fechaInicioSintomas,nroSeEpi,fechaHospitalizacion,fechaMuestraLaboratorio);
-
-        if (isRegister){
+        if (isRegister) {
             Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
-            Intent instanciar4= new Intent(this, Home.class);
+            Intent instanciar4 = new Intent(this, Home.class);
             startActivity(instanciar4);
             finish();
-        }else{
-            Toast.makeText(this, "ERROR - NO SE PUDO REGISTRAR TBL  ", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "ERROR - NO SE PUDO REGISTRAR", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void showValiDate1(View view) {
         showDatePickerDialog(txtFIniSintomas);
     }
@@ -114,35 +116,28 @@ public class FichaDengue extends AppCompatActivity {
     }
 
     private int getEpidemiologicalWeek(Calendar date) {
-        // Establecer el primer día de la semana al domingo
         date.setFirstDayOfWeek(Calendar.SUNDAY);
-        // Obtener la semana del año para la fecha dada
         int weekOfYear = date.get(Calendar.WEEK_OF_YEAR);
-        // Ajustar la semana epidemiológica si la semana comienza antes del primer jueves del año
         if (date.get(Calendar.MONTH) == Calendar.JANUARY && weekOfYear > 50) {
             weekOfYear = 1;
         }
         return weekOfYear;
     }
+
     private void showDatePickerDialog(final EditText editText) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-                Calendar selectedDate = Calendar.getInstance();
-                selectedDate.set(selectedYear, selectedMonth, selectedDay);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, selectedYear, selectedMonth, selectedDay) -> {
+            Calendar selectedDate = Calendar.getInstance();
+            selectedDate.set(selectedYear, selectedMonth, selectedDay);
 
-                // Formato de fecha
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-                editText.setText(sdf.format(selectedDate.getTime()));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            editText.setText(sdf.format(selectedDate.getTime()));
 
-                if (editText == txtFIniSintomas) {
-                    int epidemiologicalWeek = getEpidemiologicalWeek(selectedDate);
-                    String mostrarSEPI =String.valueOf(epidemiologicalWeek) ;
-                    NroSE.setText(mostrarSEPI);
-                }
+            if (editText == txtFIniSintomas) {
+                int epidemiologicalWeek = getEpidemiologicalWeek(selectedDate);
+                NroSE.setText(String.valueOf(epidemiologicalWeek));
             }
         }, año, mes, dia);
-        datePickerDialog.getDatePicker().setMaxDate(new Date().getTime()); // Establecer la fecha máxima al día actual
+        datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
         datePickerDialog.show();
     }
 }

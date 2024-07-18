@@ -3,6 +3,7 @@
     <string name="s_usuario">Usuario</string>
     <string name="s_password">Contraseña</string>
     <string name="s_ingresar">Iniciar Sesión</string>
+
     <string name="s_next">Siguiente</string>
     <string name="s_backward">Atrás</string>
 
@@ -13,4 +14,7 @@
     <string name="distrito">distrito</string>
     <string name="latitud">latitud</string>
     <string name="longitud">longitud</string>
+
+    <string name="f_paciente">FICHA PACIENTE - DENGUE</string>
+    <string name="f_historia">N° Hc</string>
 </resources>
