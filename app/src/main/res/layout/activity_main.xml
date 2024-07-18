@@ -105,8 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"
-        android:onClick="CerrarAplicacion"
-        android:text="Cerrar Aplicación"
+        android:onClick="CerrarSesión"
+        android:text="Cerrar Sesión"
         android:textSize="20sp"
         app:cornerRadius="20dp" />
 
