@@ -1,6 +1,8 @@
 package com.example.app_epidengue;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -92,6 +94,31 @@ public class RegistrarPaciente extends AppCompatActivity {
     }
 
     public void validarDNI(View view) {
-        // Implementar la lógica de validación del DNI si es necesario
+        String dni = txtDNI.getText().toString().trim();
+        Cursor cursor = pacienteBD.getPatientByDNI(dni);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            showAlert("Paciente encontrado", "El paciente con DNI " + dni + " existe.");
+        } else {
+            showAlert("Paciente no encontrado", "No se encontró un paciente con este DNI " + dni + ".");
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", null);
+        builder.show();
+    }
+
+    public void regresarHome(View view){
+        Intent instanciarH = new Intent(this, Home.class);
+        startActivity(instanciarH);
+        finish();
     }
 }

@@ -138,5 +138,12 @@
         android:onClick="insertarPacienteTemp"
         android:text="@string/s_next" />
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="regresarHome"
+        android:text="@string/s_backward" />
+
 
 </LinearLayout>

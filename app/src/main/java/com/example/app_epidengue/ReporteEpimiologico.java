@@ -1,6 +1,8 @@
 package com.example.app_epidengue;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -63,6 +65,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
             agregarDato(cursor, "fecha_inicio_sintoma", "Fecha Inicio Síntomas");
             agregarDato(cursor, "Departamento", "Departamento");
             agregarDato(cursor, "Provincia", "Provincia");
+            etHistoriaClinica.setText("");
         } else {
             Toast.makeText(this, "No se encontraron resultados", Toast.LENGTH_SHORT).show();
         }
@@ -103,6 +106,13 @@ public class ReporteEpimiologico extends AppCompatActivity {
     private void agregarTextView(String texto) {
         TextView textView = new TextView(this);
         textView.setText(texto);
+        textView.setTextColor(Color.parseColor("#000080"));
         linearLayoutResultados.addView(textView);
+    }
+
+    public void regresarHome(View view){
+        Intent instanciarH = new Intent(this, Home.class);
+        startActivity(instanciarH);
+        finish();
     }
 }

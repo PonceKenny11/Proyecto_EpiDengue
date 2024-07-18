@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
-import android.widget.TextView;
 
 public class RegistrarPacientBD {
 
@@ -21,7 +20,7 @@ public class RegistrarPacientBD {
         this.context = context;
     }
 
-    public boolean searchPatient(String idDNI, TextView tvNombreCompleto, TextView tvEdad, TextView tvSexo) {
+    /*public boolean searchPatient(String idDNI, TextView tvNombreCompleto, TextView tvEdad, TextView tvSexo) {
         Cursor cursor = null;
         try {
             cursor = getPatientByDNI(idDNI);
@@ -48,7 +47,7 @@ public class RegistrarPacientBD {
                 cursor.close();
             }
         }
-    }
+    }*/
 
     public boolean insertPaciente(String dni, String nombreCompleto, int edad, String sexo, String telefono) {
         SQLiteDatabase db = this.dbHelp.getWritableDatabase();
@@ -70,27 +69,6 @@ public class RegistrarPacientBD {
         return result != -1;
     }
 
-    /*public boolean searchPatient(String idDNI, TextView tvNombreCompleto, TextView tvEdad, TextView tvSexo) {
-        SQLiteDatabase db = this.dbHelp.getReadableDatabase();
-        Cursor cursor = null;
-        try {
-            cursor = db.rawQuery("SELECT * FROM paciente WHERE DNI = ?", new String[]{idDNI});
-            if (cursor != null && cursor.moveToFirst()) {
-                tvNombreCompleto.setText(cursor.getString(cursor.getColumnIndex("NombreCompleto")));
-                tvEdad.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("Edad"))));
-                tvSexo.setText(cursor.getString(cursor.getColumnIndex("Sexo")));
-                return true;
-            }
-        } catch (SQLiteException e) {
-            Log.e(TAG, "Error searching paciente: " + e.getMessage());
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-        }
-        return false;
-    }*/
 
     public boolean sendPacienteTemp(String dni, String nombreCompleto, int edad, String sexo, String telefono) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("PacienteRegistrado", Context.MODE_PRIVATE);
@@ -122,8 +100,10 @@ public class RegistrarPacientBD {
         return result > 0;
     }
 
-    private Cursor getPatientByDNI(String dni) {
+    public Cursor getPatientByDNI(String dni) {
         SQLiteDatabase db = this.dbHelp.getReadableDatabase();
         return db.rawQuery("SELECT * FROM paciente WHERE DNI = ?", new String[]{dni});
     }
+
+
 }
