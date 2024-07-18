@@ -99,4 +99,15 @@
         android:textSize="19sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btncerrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/green"
+        android:onClick="CerrarAplicacion"
+        android:text="Cerrar Aplicación"
+        android:textSize="20sp"
+        app:cornerRadius="20dp" />
+
 </LinearLayout>
