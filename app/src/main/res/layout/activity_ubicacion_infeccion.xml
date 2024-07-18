@@ -9,6 +9,7 @@
     tools:context=".UbicacionInfeccion">
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +23,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
+=======
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,7 +105,9 @@
         android:layout_height="0dp"
         android:layout_marginEnd="44dp"
         android:ems="10"
+        android:hint="@string/direccion"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/iddepartamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -114,8 +119,13 @@
         android:layout_height="0dp"
         android:layout_marginEnd="59dp"
         android:ems="10"
+        android:hint="@string/departamento"
         android:inputType="text"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/idprovincia"
+=======
+        android:minHeight="48dp"
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/iddireccion" />
@@ -127,10 +137,16 @@
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="43dp"
         android:ems="10"
+        android:hint="@string/provincia"
         android:inputType="text"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/idlongitud"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
+=======
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/iddepartamento"
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
         app:layout_constraintTop_toBottomOf="@+id/iddepartamento" />
 
     <EditText
@@ -140,7 +156,9 @@
         android:layout_marginEnd="58dp"
         android:layout_marginBottom="88dp"
         android:ems="10"
+        android:hint="@string/distrito"
         android:inputType="text"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView19"
@@ -153,8 +171,34 @@
         android:layout_height="0dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="18dp"
+=======
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/idprovincia"
+        app:layout_constraintTop_toBottomOf="@+id/idprovincia" />
+
+    <EditText
+        android:id="@+id/idlongitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
+        android:hint="@string/longitud"
         android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/idlatitud"
+        app:layout_constraintEnd_toEndOf="@+id/idlatitud" />
+
+    <EditText
+        android:id="@+id/idlatitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
+        android:ems="10"
+        android:hint="@string/longitud"
+        android:inputType="text"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView18"
@@ -173,6 +217,14 @@
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="parent" />
 
+=======
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/iddistrito"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/iddistrito"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
@@ -182,6 +234,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="46dp"
         android:text="reporte de Ubicacion"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="@+id/map"
         app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -202,4 +255,44 @@
         map:cameraZoom="10"
         map:uiRotateGestures="true"
         map:uiZoomControls="true" />
+=======
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="53dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnSiguiente3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="registraDatosLoad"
+        android:text="@string/s_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
+
+    <Button
+        android:id="@+id/btnAtras3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="91dp"
+        android:onClick="retrocederPestana"
+        android:text="@string/s_backward"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <ProgressBar
+        android:id="@+id/loadDengue"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="34dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/btnSiguiente3"
+        app:layout_constraintStart_toEndOf="@+id/btnAtras3"
+        app:layout_constraintTop_toBottomOf="@+id/idlatitud" />
+>>>>>>> 5b849edae5382389ec87f52febe94dfd56724d33
 </androidx.constraintlayout.widget.ConstraintLayout>
