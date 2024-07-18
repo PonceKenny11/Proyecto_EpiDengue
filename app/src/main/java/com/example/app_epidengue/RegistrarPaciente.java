@@ -52,7 +52,8 @@ public class RegistrarPaciente extends AppCompatActivity {
         String edadStr = txtEdad.getText().toString().trim();
         String telefono = txtNTelefono.getText().toString().trim();
 
-        boolean isRegistered = pacienteBD.sendPacienteTemp(dni,nombreCompleto,edadStr,getSexo(),telefono);//debe devolver true si se guardo correctamente
+        int edad = Integer.parseInt(edadStr);
+        boolean isRegistered = pacienteBD.sendPacienteTemp(dni,nombreCompleto,edad,getSexo(),telefono);//debe devolver true si se guardo correctamente
         boolean isValidated = validar.validarPaciente(dni,nombreCompleto,edadStr,getSexo(),telefono,isRegistered);
 
         if (isValidated){
@@ -70,7 +71,7 @@ public class RegistrarPaciente extends AppCompatActivity {
         if(selectId != -1){
             RadioButton rdoSex = findViewById(selectId);
             data = rdoSex.getText().toString();
-            Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
             return  data;
         }else{
             Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();
@@ -88,25 +89,6 @@ public class RegistrarPaciente extends AppCompatActivity {
     }
 
 
-   /* public void NextOrNoPaciente(View view){
-        // Mostrar el cuadro de diálogo de confirmación
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmar Registro");
-        builder.setMessage("¿Está seguro de que desea guardar estos datos?");
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // Registrar el diagnóstico
-                validarPaciente();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }*/
 
     public void validarDNI(View view){
         //inicializandoData();
