@@ -19,6 +19,34 @@
         >
 
         <ImageView
+            android:id="@+id/notificationIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_notification" />
+
+        <TextView
+            android:id="@+id/notificationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/notificationIcon"
+            android:text="No notifications yet"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp" />
+
+        <View
+            android:id="@+id/notificationDot"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/notification_dot"
+            android:layout_alignEnd="@id/notificationIcon"
+            android:layout_alignTop="@id/notificationIcon"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/image_registrar_ficha"
             android:layout_width="200dp"
             android:layout_height="200dp"
