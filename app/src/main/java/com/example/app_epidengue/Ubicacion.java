@@ -1,6 +1,7 @@
 package com.example.app_epidengue;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +9,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.maps.GoogleMap;
+
 public class Ubicacion extends AppCompatActivity {
+    EditText txtLatitud, txtLongitud;
+    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
