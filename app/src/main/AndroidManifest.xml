@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_EpiDengue"
         tools:targetApi="31">
-        <activity
-            android:name=".Ubicacion"
-            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -33,16 +31,16 @@
             android:name=".ReportesDengue"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".RegistrarPaciente"
             android:exported="false" />
         <activity
             android:name=".FichaDengue"
             android:exported="false" />
         <activity
-            android:name=".RegistrarPaciente"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".UbicacionInfeccion"
+            android:name=".Ubicacion"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
