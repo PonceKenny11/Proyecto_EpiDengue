@@ -116,7 +116,7 @@ public class DiagnosticoPaciente extends AppCompatActivity {
     private void dataAlreadyEntered(boolean isInserted) {
         if (isInserted) {
             Toast.makeText(this, "Diagnóstico registrado", Toast.LENGTH_SHORT).show();
-            Intent instanciar = new Intent(this, UbicacionInfeccion.class);
+            Intent instanciar = new Intent(this, Ubicacion.class);
             startActivity(instanciar);
             finish();
         } else {

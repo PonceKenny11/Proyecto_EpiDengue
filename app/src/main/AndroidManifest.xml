@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,10 +16,10 @@
         android:theme="@style/Theme.App_EpiDengue"
         tools:targetApi="31">
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDSYyPZfqt_FD0HJ47WeNPyZzhrvuJEBZw"
-            />
+            android:value="AIzaSyDSYyPZfqt_FD0HJ47WeNPyZzhrvuJEBZw" />
 
         <activity
             android:name=".DiagnosticoPaciente"
@@ -31,16 +34,16 @@
             android:name=".ReportesDengue"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".RegistrarPaciente"
             android:exported="false" />
         <activity
             android:name=".FichaDengue"
             android:exported="false" />
         <activity
-            android:name=".RegistrarPaciente"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".UbicacionInfeccion"
+            android:name=".Ubicacion"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
