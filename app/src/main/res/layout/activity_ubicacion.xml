@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ubicacion">
+    tools:context=".UbicacionActivity">
 
     <EditText
-        android:id="@+id/txtLatitud"
+        android:id="@+id/idDepa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:autofillHints="latitud"
-        android:hint="@string/latitud"
-        android:inputType="text"
-        android:minHeight="48dp"
+        android:layout_marginTop="16dp"
+        android:hint="Departamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtLongitud"
+        android:id="@+id/idProvin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:autofillHints="longitud"
-        android:hint="@string/longitud"
-        android:inputType="text"
+        android:layout_marginTop="8dp"
+        android:hint="Provincia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idDepa" />
+    <EditText
+        android:id="@+id/idDistri"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Distrito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idProvin"
+        tools:ignore="ExtraText" />
+
+    <EditText
+        android:id="@+id/idDirecc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Dirección"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLatitud" />
+        app:layout_constraintTop_toBottomOf="@id/idDistri" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idDirecc" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -49,8 +69,7 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLongitud"
-        map:cameraZoom="10"
-        map:uiRotateGestures="true"
-        map:uiZoomControls="true" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGuardar"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

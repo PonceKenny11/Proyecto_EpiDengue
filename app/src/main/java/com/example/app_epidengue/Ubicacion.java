@@ -3,6 +3,7 @@ package com.example.app_epidengue;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,19 +27,23 @@ import java.util.List;
 import java.util.Locale;
 
 public class Ubicacion extends AppCompatActivity  implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
-    EditText txtLatitud, txtLongitud;
+    EditText departamento, provincia, distrito, direccion;
     GoogleMap mMap;
     private final LatLng defaultLocation = new LatLng(-8.3791, -74.5539); // Pucallpa, Perú
     private UbicacionDB repository = new UbicacionDB(this);
-
     private LatLng lastSelectedLocation = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ubicacion);
-        txtLatitud = findViewById(R.id.txtLatitud);
-        txtLongitud = findViewById(R.id.txtLongitud);
+        departamento = findViewById(R.id.idDepa);
+        provincia = findViewById(R.id.idProvin);
+        distrito = findViewById(R.id.idDistri);
+        direccion = findViewById(R.id.idDirecc);
+        Button btnGuardar = findViewById(R.id.btnGuardar);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -47,6 +52,8 @@ public class Ubicacion extends AppCompatActivity  implements OnMapReadyCallback,
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnGuardar.setOnClickListener(v -> guardarUbicacion());
     }
 
     @Override
@@ -63,9 +70,6 @@ public class Ubicacion extends AppCompatActivity  implements OnMapReadyCallback,
 
     @Override
     public void onMapClick(@NonNull LatLng latLng) {
-        txtLatitud.setText(String.valueOf(latLng.latitude));
-        txtLongitud.setText(String.valueOf(latLng.longitude));
-
         lastSelectedLocation = latLng;
         mMap.clear();
         mMap.addMarker(new MarkerOptions().position(latLng).title("Ubicación Seleccionada"));
@@ -75,35 +79,47 @@ public class Ubicacion extends AppCompatActivity  implements OnMapReadyCallback,
 
     @Override
     public void onMapLongClick(@NonNull LatLng latLng) {
-        txtLatitud.setText(String.valueOf(latLng.latitude));
-        txtLongitud.setText(String.valueOf(latLng.longitude));
-
+        // Assuming you have txtLatitud and txtLongitud EditText variables defined and initialized
 
     }
+
     private void getGeocodingData(LatLng latLng) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             if (addresses != null && !addresses.isEmpty()) {
                 Address address = addresses.get(0);
-                String departamento = address.getAdminArea(); // Departamento o Región
-                String provincia = address.getSubAdminArea(); // Provincia
-                String distrito = address.getLocality(); // Distrito o Ciudad
-                String direccion = address.getAddressLine(0); // Dirección completa
-               if( repository.insertLugarInfeccion(direccion,departamento,provincia,distrito,latLng.latitude,latLng.longitude))
-               {
-                   Toast.makeText(this,"insertado correctamente",Toast.LENGTH_LONG).show();
-               }else {
-                   Toast.makeText(this,"no insertado",Toast.LENGTH_LONG).show();
+                String dep = address.getAdminArea(); // Departamento o Región
+                String prov = address.getSubAdminArea(); // Provincia
+                String dist = address.getLocality(); // Distrito o Ciudad
+                String dir = address.getAddressLine(0); // Dirección completa
 
-               }
-               // Muestra los datos recuperados
-                Toast.makeText(this, "Departamento: " + departamento + "\nProvincia: " + provincia +
-                        "\nDistrito: " + distrito + "\nDirección: " + direccion, Toast.LENGTH_LONG).show();
+                departamento.setText(dep);
+                provincia.setText(prov);
+                distrito.setText(dist);
+                direccion.setText(dir);
             }
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, "Error al obtener la dirección.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void guardarUbicacion() {
+        if (lastSelectedLocation != null) {
+            String dep = departamento.getText().toString();
+            String prov = provincia.getText().toString();
+            String dist = distrito.getText().toString();
+            String dir = direccion.getText().toString();
+
+            if (repository.insertLugarInfeccion(dir, dep, prov, dist, lastSelectedLocation.latitude, lastSelectedLocation.longitude)) {
+                Toast.makeText(this, "Insertado correctamente", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "No insertado", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, "No se ha seleccionado ninguna ubicación.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
