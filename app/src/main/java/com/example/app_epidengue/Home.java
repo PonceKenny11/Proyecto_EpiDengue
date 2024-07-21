@@ -53,8 +53,8 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navegar a la actividad GraficoEpidemiologico (suponiendo que tienes esta actividad)
-              //  Intent intent = new Intent(Home.this, GraficoEpidemiologico.class);
-            //    startActivity(intent);
+              Intent intent = new Intent(Home.this, Ubicacion.class);
+               startActivity(intent);
             }
         });
     }
