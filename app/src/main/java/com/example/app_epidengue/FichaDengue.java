@@ -3,7 +3,6 @@ package com.example.app_epidengue;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -16,10 +15,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -55,11 +50,11 @@ public class FichaDengue extends AppCompatActivity {
         });
 
         // Check for notification permissions on Android 13 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
             }
-        }
+        }*/
 
         // Create notification channel
         createNotificationChannel();
@@ -186,7 +181,7 @@ public class FichaDengue extends AppCompatActivity {
         }
     }
 
-    private void sendNotification(String idPaciente) {
+    /*private void sendNotification(String idPaciente) {
         Intent intent = new Intent(this, Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("NOTIFICATION_MESSAGE", "Ficha registrada para el paciente con DNI: " + idPaciente);
@@ -203,9 +198,9 @@ public class FichaDengue extends AppCompatActivity {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
-    }
+    }*/
 
-    private void sendDeletionNotification(String idPaciente) {
+    /*private void sendDeletionNotification(String idPaciente) {
         Intent intent = new Intent(this, Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("NOTIFICATION_MESSAGE", "Ficha eliminada para el paciente con DNI: " + idPaciente);
@@ -222,5 +217,5 @@ public class FichaDengue extends AppCompatActivity {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
-    }
+    }*/
 }
