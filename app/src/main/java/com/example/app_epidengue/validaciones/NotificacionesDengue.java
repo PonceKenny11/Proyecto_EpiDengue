@@ -24,6 +24,7 @@ public class NotificacionesDengue {
 
     public NotificacionesDengue(Context context) {
         this.context = context;
+        createNotificationChannel();
 
     }
 
@@ -40,7 +41,7 @@ public class NotificacionesDengue {
         }
     }
 
-    private void sendNotification(String idPaciente) {
+    public void sendNotification(String idPaciente) {
         Intent intent = new Intent(context, Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

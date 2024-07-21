@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.app_epidengue.Repository.FichaDengueDB;
+import com.example.app_epidengue.validaciones.NotificacionesDengue;
 import com.example.app_epidengue.validaciones.Validaciones;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ public class FichaDengue extends AppCompatActivity {
     private Spinner cboEstablecimiento;
     private FichaDengueDB fichaDB;
     private Validaciones validar;
+
+    private NotificacionesDengue notiD;
     private int año, mes, dia;
 
     @Override
@@ -45,7 +48,7 @@ public class FichaDengue extends AppCompatActivity {
         });
 
 
-
+        notiD = new NotificacionesDengue(this);
         inicilizandoData();
     }
 
@@ -96,7 +99,9 @@ public class FichaDengue extends AppCompatActivity {
         boolean isRegister = fichaDB.insertFichaPaciente(fichaDB.getLastPacienteId(), fichaDB.getLastDiagnosticoId(), fichaDB.getLastLugarInfeccionId(), nroHC, establecimientoSalud,
                 fechaInicioSintomas, nroSeEpi, fechaHospitalizacion, fechaMuestraLaboratorio);
 
+        String idPaciente  = fichaDB.getLastPacienteId();
         if (isRegister) {
+            notiD.sendNotification(idPaciente);
             Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
             Intent instanciar4 = new Intent(this, Home.class);
             startActivity(instanciar4);
