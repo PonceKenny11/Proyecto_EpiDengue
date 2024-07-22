@@ -54,7 +54,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:hint="Fecha (dd/MM/yyyy)"
         tools:ignore="MissingConstraints">
 
