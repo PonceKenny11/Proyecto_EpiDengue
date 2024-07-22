@@ -48,10 +48,9 @@
 
         <ImageView
             android:id="@+id/image_registrar_ficha"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/registrar_ficha_imagen"
-             />
+            android:layout_width="206dp"
+            android:layout_height="131dp"
+            android:src="@drawable/registrar_ficha_imagen" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,8 +71,8 @@
 
         <ImageView
             android:id="@+id/image_reporte_epidemiologico"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="181dp"
+            android:layout_height="147dp"
             android:src="@drawable/reporte_epidemiologico_image" />
 
         <TextView
@@ -82,6 +81,7 @@
             android:text="REPORTE EPIDEMIOLÓGICO"
             android:textSize="18sp"
             android:gravity="center" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -94,16 +94,17 @@
 
         <ImageView
             android:id="@+id/image_grafico_epidemiologico"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
             android:src="@drawable/grafico_epidemiologico_image" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
+            android:gravity="center"
             android:text="GRÁFICO EPIDEMIOLÓGICO"
-            android:textSize="18sp"
-            android:gravity="center" />
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 
