@@ -99,9 +99,9 @@ public class FichaDengue extends AppCompatActivity {
         boolean isRegister = fichaDB.insertFichaPaciente(fichaDB.getLastPacienteId(), fichaDB.getLastDiagnosticoId(), fichaDB.getLastLugarInfeccionId(), nroHC, establecimientoSalud,
                 fechaInicioSintomas, nroSeEpi, fechaHospitalizacion, fechaMuestraLaboratorio);
 
-        String idPaciente  = fichaDB.getLastPacienteId();
+
         if (isRegister) {
-            notiD.sendNotification(idPaciente);
+            notiD.sendNotification(historiaClinicaStr,"Ficha registrada para el paciente con DNI: ","Nueva Ficha de Dengue Registrada");
             Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
             Intent instanciar4 = new Intent(this, Home.class);
             startActivity(instanciar4);

@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.app_epidengue.Repository.FichaDengueDB;
+import com.example.app_epidengue.validaciones.NotificacionesDengue;
 
 public class ReporteEpimiologico extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
     private LinearLayout linearLayoutResultados;
     private FichaDengueDB fichaDB;
 
+    private NotificacionesDengue notifi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
         etHistoriaClinica = findViewById(R.id.txtHistoriaClinica);
         linearLayoutResultados = findViewById(R.id.linearLayoutResultados);
         fichaDB = new FichaDengueDB(this);
+        notifi = new NotificacionesDengue(this);
 
     }
 
@@ -86,6 +89,7 @@ public class ReporteEpimiologico extends AppCompatActivity {
 
         boolean isDeleted = fichaDB.deleteFichaByHC(historiaClinica);
         if (isDeleted) {
+            notifi.sendNotification(historiaClinicaStr,"Ficha elimanada con Historia Clinica: ","Una Ficha Elimanada en seguimiento EPI");
             Toast.makeText(this, "Ficha eliminada correctamente", Toast.LENGTH_SHORT).show();
             linearLayoutResultados.removeAllViews(); // Limpiar vista
         } else {

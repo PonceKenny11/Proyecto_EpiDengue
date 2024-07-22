@@ -68,7 +68,6 @@ public class Home extends AppCompatActivity {
         notificationText = findViewById(R.id.notificationText);
         notificationDot = findViewById(R.id.notificationDot);
 
-        // Mostrar el mensaje de la notificación si existe
         if (getIntent().hasExtra("NOTIFICATION_MESSAGE")) {
             String message = getIntent().getStringExtra("NOTIFICATION_MESSAGE");
             notificationText.setText(message);

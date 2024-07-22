@@ -1,6 +1,7 @@
 package com.example.app_epidengue.validaciones;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -41,28 +42,30 @@ public class NotificacionesDengue {
         }
     }
 
-    public void sendNotification(String idPaciente) {
+
+    public void sendNotification(String idPaciente, String message1,String message2) {
         Intent intent = new Intent(context, Home.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        intent.putExtra("NOTIFICATION_MESSAGE", message1 + idPaciente);
+        intent.putExtra("NEW_NOTIFICATION", true);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("Nueva Ficha de Dengue Registrada")
-                .setContentText("Ficha registrada para el paciente con DNI: " + idPaciente)
+                .setContentTitle(message2)
+                .setContentText(message1 + idPaciente)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(
+                    (Activity) context,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    1
+            );
             return;
         }
         notificationManager.notify(0, builder.build());
