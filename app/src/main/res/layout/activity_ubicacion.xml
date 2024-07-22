@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -13,59 +12,42 @@
 
     <EditText
         android:id="@+id/idDepa"
-        android:layout_width="0dp"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Departamento"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idProvin"
-        android:layout_width="0dp"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Provincia"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idDepa" />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idDistri"
-        android:layout_width="0dp"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Distrito"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idProvin"
-        tools:ignore="ExtraText" />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idDirecc"
-        android:layout_width="0dp"
+        android:layout_width="188dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Dirección"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idDistri" />
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Guardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/idDirecc" />
+        android:text="Guardar" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -75,10 +57,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuardar" />
+        android:layout_marginBottom="10dp" />
 
 </LinearLayout>
