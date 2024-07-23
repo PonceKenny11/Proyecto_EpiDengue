@@ -101,7 +101,7 @@ public class FichaDengue extends AppCompatActivity {
 
 
         if (isRegister) {
-            notiD.sendNotification(historiaClinicaStr,"Ficha registrada para el paciente con DNI: ","Nueva Ficha de Dengue Registrada");
+            notiD.sendNotification(historiaClinicaStr,"Ficha registrada HISTORIA CLINICA: ","Nueva Ficha de Dengue Registrada");
             Toast.makeText(this, "Ficha Dengue Completada!", Toast.LENGTH_SHORT).show();
             Intent instanciar4 = new Intent(this, Home.class);
             startActivity(instanciar4);

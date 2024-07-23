@@ -55,9 +55,7 @@ public class Home extends AppCompatActivity {
         imageGraficoEpidemiologico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navegar a la actividad GraficoEpidemiologico (suponiendo que tienes esta actividad)
-              Intent intent = new Intent(Home.this, Ubicacion.class);
-               startActivity(intent);
+
             }
         });
 
