@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Home extends AppCompatActivity {
 
+    private TextView notificationText;
+    private View notificationDot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +55,28 @@ public class Home extends AppCompatActivity {
         imageGraficoEpidemiologico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navegar a la actividad GraficoEpidemiologico (suponiendo que tienes esta actividad)
-              Intent intent = new Intent(Home.this, Ubicacion.class);
-               startActivity(intent);
+
             }
         });
+
+        notificandoTimeReal();
     }
+
+    private void notificandoTimeReal(){
+        notificationText = findViewById(R.id.notificationText);
+        notificationDot = findViewById(R.id.notificationDot);
+
+        if (getIntent().hasExtra("NOTIFICATION_MESSAGE")) {
+            String message = getIntent().getStringExtra("NOTIFICATION_MESSAGE");
+            notificationText.setText(message);
+        }
+
+        // Mostrar el punto de notificación si hay una nueva notificación
+        if (getIntent().getBooleanExtra("NEW_NOTIFICATION", false)) {
+            notificationDot.setVisibility(View.VISIBLE);
+        } else {
+            notificationDot.setVisibility(View.GONE);
+        }
+    }
+
 }

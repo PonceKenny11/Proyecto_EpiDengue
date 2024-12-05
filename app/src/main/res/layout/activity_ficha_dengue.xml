@@ -5,6 +5,9 @@
     android:id="@+id/btningresar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".FichaDengue">
 
     <TextView
@@ -40,7 +43,7 @@
 
     <Spinner
         android:id="@+id/cboESalud"
-        android:layout_width="400dp"
+        android:layout_width="350dp"
         android:layout_height="61dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="15dp"
@@ -48,14 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha (dd/MM/yyyy)"
-        tools:ignore="MissingConstraints">
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView7"

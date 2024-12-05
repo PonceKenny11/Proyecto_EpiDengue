@@ -10,30 +10,22 @@
     android:orientation="vertical"
     tools:context=".RegistrarPaciente">
 
-    <androidx.cardview.widget.CardView
+    <TextView
+        android:id="@+id/loginText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:background="@drawable/custom_edittex"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="20dp"/>
+        android:text="@string/title_0"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_height="660dp"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp">
-
-        <TextView
-            android:id="@+id/loginText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_0"
-            android:textAlignment="center"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+        android:padding="10dp">
 
         <EditText
             android:id="@+id/txtdni"
@@ -108,10 +100,20 @@
             android:textColor="@color/black"
             android:textColorHighlight="@color/cardview_dark_background" />
 
+        <TextView
+            android:id="@+id/tvSexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="SEXO"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <RadioGroup
             android:id="@+id/rdoGpSexo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/rdoMasculino"
@@ -128,22 +130,38 @@
                 android:textSize="16sp" />
         </RadioGroup>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:onClick="regresarHome"
+                android:text="@string/s_backward" />
+
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:onClick="insertarPacienteTemp"
+                android:text="@string/s_next" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/custom_edittex"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="20dp" />
+
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="insertarPacienteTemp"
-        android:text="@string/s_next" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="regresarHome"
-        android:text="@string/s_backward" />
 
 
 </LinearLayout>

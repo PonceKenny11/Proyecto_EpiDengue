@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void CerrarSesión(View view) {
+        finish();
+        System.exit(0);
+    }
+
+
 
     private void limpiarCampos(){
         usuario.setText("");

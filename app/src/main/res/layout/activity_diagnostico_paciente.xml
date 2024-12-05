@@ -5,25 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".DiagnosticoPaciente">
+
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/title_0"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/cboDiagnostico"
         android:layout_width="397dp"
-        android:layout_height="58dp"
+        android:layout_height="30dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
@@ -34,7 +39,7 @@
     <Spinner
         android:id="@+id/cboTipoDiag"
         android:layout_width="397dp"
-        android:layout_height="58dp"
+        android:layout_height="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
@@ -51,9 +56,10 @@
         android:layout_marginEnd="150dp"
         android:ems="10"
         android:inputType="phone"
-        android:minHeight="48dp"
+        android:minHeight="30dp"
         android:text="@string/fever"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cboTipoDiag" />
 
@@ -199,8 +205,8 @@
         android:id="@+id/btnNext2"
         android:layout_width="127dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="92dp"
         android:onClick="startRegistrarDiag"
         android:text="@string/s_next"
         app:layout_constraintEnd_toEndOf="parent"
@@ -240,8 +246,8 @@
         android:id="@+id/btnSalir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
         android:onClick="retrocederPestana"
         android:text="@string/s_backward"
         app:layout_constraintStart_toStartOf="parent"
